@@ -1,5 +1,6 @@
 droid190
 ========
+THE TEAM
 
 Joseph Lee
 Born and raised in the Bay Area, Joseph is a creative thinker who is unafraid to take risks and dream big. He has previously worked for Northrop Grumman as both a System Administrator and Software Engineer. Aside from that work, Joseph is mostly a front-end engineer with years of experience in web development and a passion for UX and UI. Though he has experience working with the full-stack, he absolutely hates back-end work and much prefers designing, color scheming, typography, and making things look pixel perfect. After graduating he hopes to join or create a startup he is passionate about.
