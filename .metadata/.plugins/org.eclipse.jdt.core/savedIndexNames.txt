@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+/Users/gabeshahbazian/Desktop/WinterCS/CSE190/droid190/.metadata/.plugins/org.eclipse.jdt.core
-559331979.index
-2648531230.index
