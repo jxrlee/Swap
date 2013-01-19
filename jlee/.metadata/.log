@@ -24,3 +24,6 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.
 
 !ENTRY com.android.ide.eclipse.adt 4 0 2013-01-19 12:08:24.362
 !MESSAGE Failed to load properties file for project 'MyFirstApp'
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2013-01-19 13:18:17.623
+!MESSAGE activity_main.xml: Couldn't resolve resource @string/edit_message
