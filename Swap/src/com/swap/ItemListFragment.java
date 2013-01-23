@@ -1,5 +1,8 @@
 package com.swap;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -14,19 +17,24 @@ public class ItemListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		        "Linux", "OS/2" };
+		DBAccess dataBase = DBAccess.getInstance();
+		List<Item> allItems = dataBase.getAllItems();
+		List<String> stringsToDisplay = new ArrayList<String>();
+		for(int i = 0; i < allItems.size(); i++) {
+			stringsToDisplay.add( allItems.get(i).title );
+			// TODO: add rest of fields
+		}
+		
+		String[] stringVersion = stringsToDisplay.toArray(new String[stringsToDisplay.size()]);
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-		        android.R.layout.simple_list_item_1, values);
+		        android.R.layout.simple_list_item_1, stringVersion);
 		setListAdapter(adapter);
 	}
 
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		// Do something with the data
-
+		// TODO: go to next screen when item is selected
 	}
 }
