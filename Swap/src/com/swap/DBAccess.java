@@ -10,6 +10,7 @@ public class DBAccess {
 	
 	public static void getAllItems(DBAccessDelegate delegate)
 	{
+		
 		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
 		arg.delegate = delegate;
 		arg.url = "http://purple.dotgeek.org/swapapi.php?action=getAllItems";
