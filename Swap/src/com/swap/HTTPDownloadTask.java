@@ -61,7 +61,7 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	
 	@Override
 	protected void onPostExecute(String result) {
-       DBAccess.parseDownload(delegate, result);
+       DBAccess.parseItemDownload(delegate, result);
     }
 
 }

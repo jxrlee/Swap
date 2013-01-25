@@ -9,8 +9,8 @@
     
     <!-- Buy -->
     <string name="title_section3">Premium</string>
-    <string name="title_section2">Recent</string>
-    <string name="title_section1">Price</string>
+    <string name="title_section2">Price</string>
+    <string name="title_section1">Recent</string>
     <string name="title_activity_buy">Buy</string>
     <string name="buy_search">Search Swap</string>
 

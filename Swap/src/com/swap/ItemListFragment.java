@@ -34,7 +34,6 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		List<String> stringsToDisplay = new ArrayList<String>();
 		for(int i = 0; i < data.size(); i++) {
 			stringsToDisplay.add( data.get(i).title );
-			// TODO: add rest of fields
 		}
 		
 		String[] stringVersion = stringsToDisplay.toArray(new String[stringsToDisplay.size()]);

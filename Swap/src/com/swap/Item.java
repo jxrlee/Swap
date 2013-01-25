@@ -13,6 +13,7 @@ public class Item {
 	public String location;
 	public boolean available;
 	public String sellerid;
+	public int imagesnum;
 	
 	public Item()
 	{

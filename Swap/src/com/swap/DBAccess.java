@@ -1,5 +1,6 @@
 package com.swap;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class DBAccess {
 		return true;
 	}
 	
-	public static void parseDownload(DBAccessDelegate delegate, String data)
+	public static void parseItemDownload(DBAccessDelegate delegate, String data)
 	{
 		List<Item> list = new ArrayList<Item>();
 				
@@ -69,8 +70,17 @@ public class DBAccess {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
 				
 				Item currentItem = new Item();
+				currentItem.id = jsonObject.getInt("id");
 				currentItem.title = jsonObject.getString("title");
-				// TODO: add in rest of fields
+				currentItem.price = (float)jsonObject.getDouble("price");
+				currentItem.description = jsonObject.getString("description");
+				currentItem.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(jsonObject.getString("date"));
+				currentItem.featured = (jsonObject.getInt("featured") == 1) ? true : false;
+				currentItem.rating = jsonObject.getInt("rating");
+				currentItem.location = jsonObject.getString("location");
+				currentItem.available = (jsonObject.getInt("available") == 1) ? true : false;
+				currentItem.sellerid = jsonObject.getString("sellerid");
+				currentItem.imagesnum = jsonObject.getInt("imagesnum");
 				
 				list.add(currentItem);
 			}
