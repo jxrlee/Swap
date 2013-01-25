@@ -1,8 +1,9 @@
 package com.swap;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Item {
+public class Item implements Serializable {
 	public int id;
 	public String title;
 	public float price;
