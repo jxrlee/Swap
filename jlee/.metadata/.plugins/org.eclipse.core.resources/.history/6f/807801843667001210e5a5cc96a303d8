@@ -20,16 +20,16 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/button_buy"
         android:onClick="buyButtonTap" />
     
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/button_sell"
         android:onClick="sellButtonTap" />
 
