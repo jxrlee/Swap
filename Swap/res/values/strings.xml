@@ -13,8 +13,17 @@
     <string name="title_section1">Recent</string>
     <string name="title_activity_buy">Buy</string>
     <string name="buy_search">Search Swap</string>
-    
+
     <!-- Item -->
     <string name="title_activity_item_detail">Item</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sell">SellActivity</string>
+    
+    <!-- Sell -->
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_price">Price</string>
+    <string name="btn_send">Publish</string>
+    <string name="check_featured">Make it Featured!</string>
 
 </resources>
