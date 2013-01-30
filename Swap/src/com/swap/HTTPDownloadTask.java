@@ -13,11 +13,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.swap.HTTPDownloadTaskArgument.Task;
+
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, String> {
 
-	DBAccessDelegate delegate;
+	HTTPDownloadTaskArgument argument;
 	
 	@Override
 	protected String doInBackground(HTTPDownloadTaskArgument... args) {
@@ -27,7 +30,7 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	    HttpClient client = new DefaultHttpClient();
 	    HttpGet httpGet = new HttpGet(args[0].url);
 	    
-	    this.delegate = args[0].delegate;
+	    this.argument = args[0];
 	    
 	    try {
 	    	HttpResponse response = client.execute(httpGet);
@@ -45,7 +48,7 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	    		}
 	      }
 	      else {
-	    	  //fail
+	    	  Log.e("HTTPDownloadTask", "Http Response Error :(");
 	      }
 	    }
 	    catch (ClientProtocolException e) {
@@ -61,7 +64,15 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	
 	@Override
 	protected void onPostExecute(String result) {
-       DBAccess.parseItemDownload(delegate, result);
+		
+		if (argument.task == Task.RETRIEVAL)
+		{
+			DBAccess.parseItemDownload(argument.delegate, result);
+		}
+		else if (argument.task == Task.INSERT)
+		{
+			DBAccess.parseItemInsert(argument.delegate, result);
+		}
     }
 
 }
