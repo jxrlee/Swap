@@ -1,12 +1,10 @@
 package com.swap;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
