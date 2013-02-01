@@ -1,17 +1,16 @@
 package com.swap;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class SellActivity extends Activity {
+public class SellActivity extends Activity implements DBAccessDelegate {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +28,20 @@ public class SellActivity extends Activity {
 	public void sendButtonClicked(View view)
 	{
 		Item newItem = new Item();
+		
 		EditText tmp = (EditText)findViewById(R.id.txtTitle);
 		newItem.title = tmp.getText().toString();
+		
 		tmp = (EditText)findViewById(R.id.txtPrice);
 		newItem.price = Float.parseFloat(tmp.getText().toString());
+		
 		tmp = (EditText)findViewById(R.id.txtDescription);
 		newItem.description = tmp.getText().toString();
+		
 		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
 		newItem.featured = featured.isChecked();
+		
+		// TODO: UI for these properties
 		newItem.rating = 5;
 		newItem.location = "00.00 00.00";
 		newItem.available = true;
@@ -44,19 +49,25 @@ public class SellActivity extends Activity {
 		newItem.imagesnum = 0;
 		
 		
-		int newID = DBAccess.createItem(newItem);
+		DBAccess.createItem(this, newItem);
 		
-		if(newID != -1)
+	}
+	
+	public void downloadedResult(List<Item> data)
+	{
+		Item newItem = data.get(0);
+		
+		if (newItem.id != -1)
 		{
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Item created with ID="+String.valueOf(newID));
+			// TODO: we have a good result, do something
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Item created with ID="+String.valueOf(newItem.id));
 	       
 		
-		AlertDialog dialog = builder.create();
+			AlertDialog dialog = builder.create();
 		
-		dialog.show();
+			dialog.show();
 		}
-		
-		
 	}
 }

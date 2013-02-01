@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
 public class ItemDetailActivity extends Activity {
 	
+	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/swapimages/";
 	public static final String ARG_ITEM_DATA = "item_data"; 
 	
 	private Item itemData;
@@ -27,6 +29,14 @@ public class ItemDetailActivity extends Activity {
 		
 		TextView descriptionView = (TextView) findViewById(R.id.descriptionView);
 		descriptionView.setText(itemData.description);
+		
+		if (itemData.imagesnum > 0)
+		{
+			ImageView imageView = (ImageView) findViewById(R.id.imageView);
+			
+			ImageDownloader mDownload = new ImageDownloader();
+			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_1.jpg", imageView);
+		}
 	}
 
 	@Override
