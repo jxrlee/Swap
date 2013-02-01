@@ -18,12 +18,13 @@
     <string name="title_activity_item_detail">Item</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_sell">SellActivity</string>
-    
+
     <!-- Sell -->
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
     <string name="hint_price">Price</string>
     <string name="btn_send">Publish</string>
     <string name="check_featured">Make it Featured!</string>
+    <string name="title_activity_sell_summary">SellSummaryActivity</string>
 
 </resources>
