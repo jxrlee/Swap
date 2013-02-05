@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello_world">Hello world!</string>
-    
+
     <!-- Home -->
     <string name="app_name">Swap</string>
     <string name="menu_settings">Settings</string>
@@ -15,6 +15,7 @@
     <string name="title_section1">Recent</string>
     <string name="title_activity_buy">Buy</string>
     <string name="buy_search">Search Swap</string>
+    <string name="buy_location">Map</string>
 
     <!-- Item -->
     <string name="title_activity_item_detail">Item</string>
@@ -28,5 +29,6 @@
     <string name="btn_send">Publish</string>
     <string name="check_featured">Make it Featured!</string>
     <string name="title_activity_sell_summary">SellSummaryActivity</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

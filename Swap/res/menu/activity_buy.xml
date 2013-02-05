@@ -10,5 +10,10 @@
           android:title="@string/buy_search"
           android:showAsAction="always"
           android:actionViewClass="android.widget.SearchView" />
+    
+    <item android:title="@string/buy_location"
+        android:id="@+id/show_map"
+        android:icon="@drawable/location_place"
+        android:showAsAction="always" />
 
 </menu>

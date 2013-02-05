@@ -1,7 +1,10 @@
 package com.swap;
 
+import com.swap.R.id;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -90,6 +94,12 @@ public class BuyActivity extends FragmentActivity implements
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
 			NavUtils.navigateUpFromSameTask(this);
+			return true;
+			
+		case R.id.show_map:
+			Intent intent = new Intent(this, MapActivity.class);
+			startActivity(intent);
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
