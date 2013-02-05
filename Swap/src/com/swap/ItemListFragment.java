@@ -57,6 +57,7 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		
 		this.itemData = data;
 		
+		/*
 		List<String> stringsToDisplay = new ArrayList<String>();
 		for(int i = 0; i < data.size(); i++) {
 			stringsToDisplay.add( data.get(i).title );
@@ -66,6 +67,13 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 		        android.R.layout.simple_list_item_1, stringVersion);
+		        
+		*/
+		
+		Item[] itemArray = data.toArray(new Item[data.size()]);
+		
+		ItemAdapter adapter = new ItemAdapter(getActivity(), R.layout.item_list_row, itemArray);
+		
 		setListAdapter(adapter);
 		
 	}
