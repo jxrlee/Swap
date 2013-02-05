@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="hello_world">Hello world!</string>
+    
     <!-- Home -->
     <string name="app_name">Swap</string>
     <string name="menu_settings">Settings</string>
@@ -16,7 +18,7 @@
 
     <!-- Item -->
     <string name="title_activity_item_detail">Item</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="contact_button">Contact Seller</string>
 
     <!-- Sell -->
     <string name="title_activity_sell">Sell</string>
