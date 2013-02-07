@@ -4,7 +4,12 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,6 +21,21 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
+		
+		LocationManager locationManager =
+		        (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		
+		LocationProvider provider =
+		        locationManager.getProvider(LocationManager.GPS_PROVIDER);
+		
+		final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+	    if (!gpsEnabled) {
+	        Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+	        startActivity(settingsIntent);
+	    }
+	    
+	    
 	}
 
 	@Override
