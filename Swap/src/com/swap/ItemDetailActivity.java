@@ -1,9 +1,12 @@
 package com.swap;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
@@ -61,6 +64,15 @@ public class ItemDetailActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void contactButtonTap(View view) {
+		Intent intent = new Intent(Intent.ACTION_SENDTO);
+
+		intent.setData(Uri.parse("sms:" + itemData.sellerid));
+		intent.putExtra("sms_body", "Hello I'm interested in your " + itemData.title);
+        intent.putExtra("compose_mode", true);
+		startActivity(intent);
 	}
 
 }
