@@ -27,7 +27,7 @@ public class HomeActivity extends Activity {
 	}
 	
 	public void sellButtonTap(View view) {
-		Intent intent = new Intent(this, SellActivity.class);
+		Intent intent = new Intent(this, SellSummaryActivity.class);
 		startActivity(intent);
 	}
 

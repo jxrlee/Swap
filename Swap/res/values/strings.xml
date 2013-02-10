@@ -28,7 +28,12 @@
     <string name="hint_price">Price</string>
     <string name="btn_send">Publish</string>
     <string name="check_featured">Make it Featured!</string>
+    
+    <!-- Sell Summary -->
     <string name="title_activity_sell_summary">SellSummaryActivity</string>
+    <string name="btnSellItemText">Sell Item</string>
+    
+    
     <string name="title_activity_map">MapActivity</string>
 
 </resources>

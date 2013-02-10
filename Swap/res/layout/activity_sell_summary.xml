@@ -4,44 +4,26 @@
     android:layout_height="match_parent"
     tools:context=".SellSummaryActivity" >
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnSellItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="19dp"
+        android:text="@string/btnSellItemText"
+        android:onClick="btnSellClicked" />
+
+    <ListView
+        android:id="@+id/summaryList"
+        android:layout_width="match_parent"
         android:layout_height="300dip"
-         >
+        android:layout_above="@+id/btnSellItem"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="37dp" >
 
     </ListView>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_weight="1"
-        android:text="Button" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/listView1"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="18dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/button2"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:text="Button" />
 
 </RelativeLayout>

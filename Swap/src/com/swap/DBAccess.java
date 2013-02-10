@@ -9,6 +9,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.swap.HTTPDownloadTaskArgument.Task;
 
 public class DBAccess {
@@ -156,6 +158,7 @@ public class DBAccess {
 			list.add(currentItem);
 		}
 		catch (Exception e) {
+			Log.e("DBAccess", "PARSE ITEM INSERT CATCH" + e.getMessage());
 			e.printStackTrace();
 		}
 		
