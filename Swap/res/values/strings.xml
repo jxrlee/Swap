@@ -28,12 +28,15 @@
     <string name="hint_price">Price</string>
     <string name="btn_send">Publish</string>
     <string name="check_featured">Make it Featured!</string>
-    
+
     <!-- Sell Summary -->
     <string name="title_activity_sell_summary">SellSummaryActivity</string>
     <string name="btnSellItemText">Sell Item</string>
-    
-    
+    <string name="title_tab1">Current</string>
+    <string name="title_tab2">History</string>
+    <string name="message_subscribe">Become a featured user today!</string>
+    <string name="button_subscribe">Subscribe</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_edit_item">EditItemActivity</string>
 
 </resources>
