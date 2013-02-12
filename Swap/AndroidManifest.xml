@@ -54,15 +54,6 @@
                 android:value="com.swap.HomeActivity" />
         </activity>
         <activity
-            android:name="com.swap.SellActivity"
-            android:label="@string/title_activity_sell"
-            android:parentActivityName="com.swap.SellSummaryActivity"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.swap.SellSummaryActivity" />
-        </activity>
-        <activity
             android:name="com.swap.SellSummaryActivity"
             android:label="@string/title_activity_sell"
             android:parentActivityName="com.swap.HomeActivity"
@@ -70,6 +61,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.swap.HomeActivity" />
+        </activity>
+        <activity
+            android:name="com.swap.SellActivity"
+            android:label="@string/title_activity_sell"
+            android:parentActivityName="com.swap.SellSummaryActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.swap.SellSummaryActivity" />
         </activity>
         <activity
             android:name="com.swap.ItemDetailActivity"
