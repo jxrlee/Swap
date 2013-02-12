@@ -3,8 +3,10 @@ package com.swap;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class HomeActivity extends Activity {
 
@@ -12,6 +14,18 @@ public class HomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/Lobster.otf");
+        TextView tv = (TextView) findViewById(R.id.HomeLogo);
+        tv.setTypeface(tf);
+        
+        tf = Typeface.createFromAsset(getAssets(),
+                "fonts/Cabin-Bold-TTF.ttf");
+        tv = (TextView) findViewById(R.id.button_buy);
+        tv.setTypeface(tf);
+        tv = (TextView) findViewById(R.id.button_sell);
+        tv.setTypeface(tf);
 	}
 
 	@Override
@@ -30,5 +44,6 @@ public class HomeActivity extends Activity {
 		Intent intent = new Intent(this, SellSummaryActivity.class);
 		startActivity(intent);
 	}
+
 
 }
