@@ -43,7 +43,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	private Uri fileUri;
 	private Location LastLocation = null;
-	private ImageView selectedImage;
+	private customImage selectedImage;
 	
 	private static LocationListener locationListener;
 	
@@ -207,10 +207,11 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 //				layout.setGravity(Gravity.CENTER);
 	        	
 
-				ImageView imageView = new ImageView(getApplicationContext());
+				customImage imageView = new customImage(getApplicationContext());
 				imageView.setLayoutParams(new LayoutParams(600,LayoutParams.MATCH_PARENT));
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 				imageView.setImageURI(fileUri);
+				imageView.path = fileUri.toString();
 				imageView.setId(itemGallery.getChildCount());
 
 				registerForContextMenu(imageView);
@@ -255,7 +256,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    int imgNum = itemGallery.getChildCount();
 	    if (type == MEDIA_TYPE_IMAGE){
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "NEWITEM_"+ String.valueOf(imgNum) + ".jpg");
+	        "IMG_"+ timeStamp + ".jpg");
 	    } else if(type == MEDIA_TYPE_VIDEO) {
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 	        "VID_"+ timeStamp + ".mp4");
@@ -271,7 +272,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	                                ContextMenuInfo menuInfo) {
 	    super.onCreateContextMenu(menu, v, menuInfo);
 	    MenuInflater inflater = getMenuInflater();
-	    selectedImage = (ImageView) v;
+	    selectedImage = (customImage) v;
 	    inflater.inflate(R.menu.context_menu_images, menu);
 	}
 	
@@ -281,11 +282,13 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    switch (item.getItemId()) {
 	        case R.id.menu_delete:
 	        	itemGallery.removeView(selectedImage);
-	        	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	  	              Environment.DIRECTORY_PICTURES)+"/MyCameraApp", "NEWITEM_"+selectedImage.getId() );
+	        	File toBeRemovedFile = new File(selectedImage.path.substring(7),"" );
 	        	
+	        	if(toBeRemovedFile.exists())
+	        	{
+	        		Boolean removed  = toBeRemovedFile.delete();
+	        	}
 	        	
-	        	mediaStorageDir.delete();
 	           // editNote(info.id);
 	            return true;
 	        case R.id.menu_rotate:
