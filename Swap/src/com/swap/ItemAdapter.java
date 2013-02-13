@@ -35,6 +35,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             holder = new ItemHolder();
             holder.thumbnail = (ImageView)row.findViewById(R.id.list_image);
             holder.title = (TextView)row.findViewById(R.id.title);
+            holder.description = (TextView)row.findViewById(R.id.description);
+            holder.price = (TextView)row.findViewById(R.id.price);
             
             row.setTag(holder);
         }
@@ -45,6 +47,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         
         Item item = data[position];
         holder.title.setText(item.title);
+        holder.description.setText(item.description);
+        holder.price.setText("$" + Float.toString(item.price));
         
         if (item.imagesnum > 0)
 		{			
@@ -58,6 +62,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
     static class ItemHolder
     {
         ImageView thumbnail;
+        TextView price;
         TextView title;
+        TextView description;
     }
 }
