@@ -20,11 +20,19 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class SellActivity extends Activity implements DBAccessDelegate {
@@ -35,8 +43,11 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	private Uri fileUri;
 	private Location LastLocation = null;
+	private ImageView selectedImage;
 	
 	private static LocationListener locationListener;
+	
+	static LinearLayout itemGallery;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +55,16 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		setContentView(R.layout.activity_sell);
 		startListeningGPS();
 		
-	    
+		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
+		
+//		ImageView imageView = new ImageView(getApplicationContext());
+//		imageView.setLayoutParams(new LayoutParams(640,LayoutParams.MATCH_PARENT));
+//		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//		imageView.setImageResource(R.drawable.ic_launcher);
+//
+//	//	layout.addView(imageView);
+//
+//		itemGallery.addView(imageView);
 	}
 
 	private void startListeningGPS() {
@@ -155,7 +175,6 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Item created with ID="+String.valueOf(newItem.id));
 	       
-		
 			AlertDialog dialog = builder.create();
 		
 			dialog.show();
@@ -164,8 +183,6 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	public void launchCamera(View view)
 	{
-		
-		
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 	    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
@@ -182,8 +199,25 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	        if (resultCode == RESULT_OK) {
 	            // Image captured and saved to fileUri specified in the Intent
 	            //Toast.makeText(this, "Image saved to:\n" +  data.getData(), Toast.LENGTH_LONG).show();
-	            ImageView image= (ImageView)findViewById(R.id.imageView1);
-	    	    image.setImageURI(fileUri);
+//	            ImageView image= (ImageView)findViewById(R.id.imageView1);
+//	    	    image.setImageURI(fileUri);
+	    	    
+//	    	    LinearLayout layout = new LinearLayout(getApplicationContext());
+//				layout.setLayoutParams(new LayoutParams(600,LayoutParams.MATCH_PARENT));
+//				layout.setGravity(Gravity.CENTER);
+	        	
+
+				ImageView imageView = new ImageView(getApplicationContext());
+				imageView.setLayoutParams(new LayoutParams(600,LayoutParams.MATCH_PARENT));
+				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+				imageView.setImageURI(fileUri);
+				imageView.setId(itemGallery.getChildCount());
+
+				registerForContextMenu(imageView);
+				
+				//layout.addView(imageView);
+				itemGallery.addView(imageView);
+				
 	        } else if (resultCode == RESULT_CANCELED) {
 	            // User cancelled the image capture
 	        } else {
@@ -218,9 +252,10 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    // Create a media file name
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 	    File mediaFile;
+	    int imgNum = itemGallery.getChildCount();
 	    if (type == MEDIA_TYPE_IMAGE){
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "IMG_"+ timeStamp + ".jpg");
+	        "NEWITEM_"+ String.valueOf(imgNum) + ".jpg");
 	    } else if(type == MEDIA_TYPE_VIDEO) {
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 	        "VID_"+ timeStamp + ".mp4");
@@ -229,5 +264,35 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    }
 
 	    return mediaFile;
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+	                                ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu(menu, v, menuInfo);
+	    MenuInflater inflater = getMenuInflater();
+	    selectedImage = (ImageView) v;
+	    inflater.inflate(R.menu.context_menu_images, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+	    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+	    switch (item.getItemId()) {
+	        case R.id.menu_delete:
+	        	itemGallery.removeView(selectedImage);
+	        	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+	  	              Environment.DIRECTORY_PICTURES)+"/MyCameraApp", "NEWITEM_"+selectedImage.getId() );
+	        	
+	        	
+	        	mediaStorageDir.delete();
+	           // editNote(info.id);
+	            return true;
+	        case R.id.menu_rotate:
+	            //deleteNote(info.id);
+	            return true;
+	        default:
+	            return super.onContextItemSelected(item);
+	    }
 	}
 }

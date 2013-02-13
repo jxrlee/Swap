@@ -28,6 +28,8 @@
     <string name="hint_price">Price</string>
     <string name="btn_send">Publish</string>
     <string name="check_featured">Make it Featured!</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rotate">Rotate 90 degrees</string>
 
     <!-- Sell Summary -->
     <string name="title_activity_sell_summary">SellSummaryActivity</string>
