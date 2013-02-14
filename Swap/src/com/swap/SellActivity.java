@@ -53,7 +53,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
-		startListeningGPS();
+		//startListeningGPS();
 		
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
 		
@@ -153,7 +153,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	private String getPhoneNumber(int digitCount) {
 
-	    TelephonyManager mTelephonyMgr;
+		   TelephonyManager mTelephonyMgr;
 	    mTelephonyMgr = (TelephonyManager)
 	        getSystemService(Context.TELEPHONY_SERVICE); 
 	    String num = mTelephonyMgr.getLine1Number();
@@ -212,7 +212,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 				imageView.setImageURI(fileUri);
 				imageView.path = fileUri.toString();
-				imageView.setId(itemGallery.getChildCount());
+				//imageView.setId(itemGallery.getChildCount());
 
 				registerForContextMenu(imageView);
 				
