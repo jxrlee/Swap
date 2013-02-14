@@ -2,16 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
     tools:context=".ItemDetailActivity" >
     
     <ImageView
         android:id="@+id/imageView" 
         android:layout_height="wrap_content"
         android:maxHeight="200dp"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true" 
+        android:background="#000000" />
 
     <TextView
         android:textSize="20dip"
@@ -30,10 +31,15 @@
     
     <Button 
         android:id="@+id/contactButton"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+    	android:layout_marginRight="3dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/descriptionView"
         android:text="@string/contact_button"
+        android:textSize="20dip"
+        android:textColor="#FFFFFF"
+        android:background="#36780f"
         android:onClick="contactButtonTap" />
 </RelativeLayout>

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
     android:orientation="vertical"
     android:background="@drawable/app_background"
     tools:context=".HomeActivity" >
@@ -16,7 +16,8 @@
         android:layout_marginBottom="20dp"
         android:text="@string/app_name"  
         android:gravity="center_horizontal"  
-        android:textSize="70dp" />
+        android:textSize="100dp" 
+        android:textColor="#94493D"/>
     
     <Button
         android:id="@+id/button_buy"
@@ -25,6 +26,8 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:text="@string/button_buy"
+        android:textColor="#FFFFFF"
+        android:background="#94493D"
         android:onClick="buyButtonTap" />
     
     <Button
@@ -34,6 +37,8 @@
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
         android:text="@string/button_sell"
+        android:textColor="#FFFFFF"
+        android:background="#94493D"
         android:onClick="sellButtonTap" />
 
 </LinearLayout>
