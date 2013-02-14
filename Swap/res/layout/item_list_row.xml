@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp" >
+    android:padding="0dp" >
     
     <!--  thumbnail on left -->
     <LinearLayout 
@@ -15,8 +15,8 @@
  
         <ImageView
             android:id="@+id/list_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="80dp"
+            android:layout_height="60dp" />
     </LinearLayout>
     
     <!--  price on right -->
@@ -45,8 +45,9 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/priceContainer"
         android:layout_toRightOf="@+id/thumbnail"
+        android:padding="0dp"
         android:maxLines="1"
-        android:textSize="18dp" />
+        android:textSize="22dp" />
     
     <!-- item description -->
 
@@ -57,7 +58,7 @@
         android:layout_below="@+id/title"
         android:layout_toLeftOf="@+id/priceContainer"
         android:layout_toRightOf="@+id/thumbnail"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textSize="14dp" />
 
 </RelativeLayout>
