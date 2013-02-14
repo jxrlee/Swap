@@ -18,7 +18,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/btnSellItemText"
+        android:textColor="#FFFFFF"
+        android:background="#9f0202"
         android:onClick="btnSellItemClicked" />
 
     <TextView
@@ -37,7 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txtMessage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF"
+        android:background="#ffc92b"
         android:text="@string/button_subscribe" />
     
 </RelativeLayout>

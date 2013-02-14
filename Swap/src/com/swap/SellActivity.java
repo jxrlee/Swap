@@ -208,7 +208,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	        	
 
 				customImage imageView = new customImage(getApplicationContext());
-				imageView.setLayoutParams(new LayoutParams(600,LayoutParams.MATCH_PARENT));
+				imageView.setLayoutParams(new LayoutParams(300,LayoutParams.MATCH_PARENT));
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 				imageView.setImageURI(fileUri);
 				imageView.path = fileUri.toString();
