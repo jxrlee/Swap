@@ -36,11 +36,6 @@ public class DBAccess {
 		return null;
 	}
 	
-	public List<Item> getItemsByUser(String userId)
-	{
-		return null;
-	}
-	
 	public List<Item> getItemsBySearchText(String text)
 	{
 		return null;
@@ -168,7 +163,7 @@ public class DBAccess {
 		
 	}
 
-	public static void getItemsById(
+	public static void getItemsByUser(
 			DBAccessDelegate delegate, String userid) {
 		
 		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();

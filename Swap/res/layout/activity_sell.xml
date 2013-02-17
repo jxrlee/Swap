@@ -29,7 +29,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@id/horizontalScroll"
-        android:background="#FFE4B5"
+        
         android:ems="10"
         android:hint="@string/hint_title"
         android:inputType="text"
@@ -43,7 +43,7 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="#FFE4B5"
+       
         android:ems="10"
         android:hint="@string/hint_description"
         android:inputType="textMultiLine"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="#FFE4B5"
+        
         android:ems="10"
         android:hint="@string/hint_price"
         android:inputType="numberDecimal"

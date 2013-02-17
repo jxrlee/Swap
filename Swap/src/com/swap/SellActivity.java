@@ -47,14 +47,15 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	static LinearLayout itemGallery;
 	
+	LocationManager locationManager;
+	LocationProvider provider;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
-		startListeningGPS();
 		
 		
-	    
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
 		
 //		ImageView imageView = new ImageView(getApplicationContext());
@@ -66,12 +67,26 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 //
 //		itemGallery.addView(imageView);
 	}
+	@Override
+	protected void onPause() {
+        super.onPause();
+
+        locationManager.removeUpdates(locationListener);
+        locationListener = null;
+    }
+
+	@Override
+	protected void onResume() {
+        super.onResume();
+        
+        startListeningGPS();
+    }
 
 	private void startListeningGPS() {
-		LocationManager locationManager =
+		locationManager =
 		        (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
-		LocationProvider provider =
+		provider =
 		        locationManager.getProvider(LocationManager.GPS_PROVIDER);
 		
 		final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -119,23 +134,38 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	{
 		Item newItem = new Item();
 		
-		EditText tmp = (EditText)findViewById(R.id.txtTitle);
-		newItem.title = tmp.getText().toString();
+		EditText tmpTitle = (EditText)findViewById(R.id.txtTitle);
+		EditText tmpPrice = (EditText)findViewById(R.id.txtPrice);
+		EditText tmpDesc = (EditText)findViewById(R.id.txtDescription);
 		
-		tmp = (EditText)findViewById(R.id.txtPrice);
-		newItem.price = Float.parseFloat(tmp.getText().toString());
+		if(tmpTitle.getText().toString().length()==0 || tmpPrice.getText().toString().length()==0 || tmpDesc.getText().toString().length()==0 )
+		{
+			Toast.makeText(this, "Please enter all the required fields", Toast.LENGTH_LONG).show();
+			return;
+		}
 		
-		tmp = (EditText)findViewById(R.id.txtDescription);
-		newItem.description = tmp.getText().toString();
+		newItem.title = tmpTitle.getText().toString();
+		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
+		newItem.description = tmpDesc.getText().toString();
 		
 		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
 		newItem.featured = featured.isChecked();
 		
 		// TODO: UI for these properties
 		newItem.rating = 5;
+		
 		if(LastLocation != null)
 		{
-			newItem.location = String.valueOf(LastLocation.getLatitude()) + " " + String.valueOf(LastLocation.getLongitude());
+			LastLocation = locationManager.getLastKnownLocation(provider.getName());
+			
+			if(LastLocation != null)
+			{
+				newItem.location = String.valueOf(LastLocation.getLatitude()) + " " + String.valueOf(LastLocation.getLongitude());
+			}
+			else
+			{
+				newItem.location = "0.0 0.0";
+			}
 		}
 		else
 		{

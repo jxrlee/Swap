@@ -1,5 +1,21 @@
 package com.swap;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -12,20 +28,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class SellSummaryActivity extends FragmentActivity implements
 ActionBar.TabListener {
 	
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
+	User userinfo;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell_summary);
 
+		userinfo = new User();
+		getUserInfo();
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);	
@@ -48,6 +70,22 @@ ActionBar.TabListener {
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+
+	private void getUserInfo() {
+		new GetUserInfoTask().execute(getPhoneNumber(10));
+	}
+
+	private String getPhoneNumber(int digitCount) {
+		TelephonyManager mTelephonyMgr;
+	    mTelephonyMgr = (TelephonyManager)
+	        getSystemService(Context.TELEPHONY_SERVICE); 
+	    String num = mTelephonyMgr.getLine1Number();
+	    if(num!=null && num.length()>digitCount)
+	    {
+	    	num= num.substring(num.length()-digitCount);
+	    }
+	    return num;
 	}
 
 	@Override
@@ -126,6 +164,101 @@ ActionBar.TabListener {
 			}
 			return null;
 		}
+	}
+	
+	class GetUserInfoTask extends AsyncTask<String, Void, String> {
+		public static final String API_URL = "http://purple.dotgeek.org/swapapi.php";
+		
+		@Override
+		protected String doInBackground(String... params) {
+			
+			StringBuilder builder = new StringBuilder();
+			
+		    HttpClient client = new DefaultHttpClient();
+		    HttpGet httpGet = new HttpGet(API_URL+"?action=getUserInfo&id="+params[0]);
+		    
+		       
+		    try {
+		    	HttpResponse response = client.execute(httpGet);
+		    	StatusLine statusLine = response.getStatusLine();
+		      
+		    	int statusCode = statusLine.getStatusCode();
+		    	if (statusCode == 200) {
+		    		HttpEntity entity = response.getEntity();
+		    		InputStream content = entity.getContent();
+		    		
+		    		BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+		    		String line;
+		    		while ((line = reader.readLine()) != null) {
+		    			builder.append(line);
+		    		}
+		    	}
+			      else {
+			    	  Log.e("HTTPDownloadTask", "Http Response Error :(");
+			      }
+			    }
+			    catch (ClientProtocolException e) {
+			    	e.printStackTrace();
+			    }
+			    catch (Exception e) {
+			    	e.printStackTrace();
+			    }
+			    
+			    return builder.toString();
+		}
+		
+		@Override
+	    protected void onPostExecute(String result) {
+			
+			try
+			{
+
+				JSONObject jsonObject = new JSONObject(result);
+				
+				userinfo.phone = jsonObject.getString("phone");
+				int x = jsonObject.getInt("premium");
+				if(x ==0)
+				{
+					userinfo.isPremium = false;
+				}
+				else
+				{
+					userinfo.isPremium = true;
+				}
+				if(jsonObject.getString("startdate") != null)
+				{
+					userinfo.membershipStartDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(jsonObject.getString("startdate"));
+				}
+				else
+				{
+					userinfo.membershipStartDate = null;
+				}
+				
+			}
+			catch (Exception e) {
+				Log.e("Userinfo", "User info retrieval failed" + e.getMessage());
+				e.printStackTrace();
+			}
+			
+			if(userinfo.isPremium)
+			{
+				//hide controls
+				TextView txt = (TextView) findViewById(R.id.txtMessage);
+				txt.setVisibility(View.GONE);
+
+				Button btn = (Button) findViewById(R.id.btnSubscribe);
+				btn.setVisibility(View.GONE);
+			}
+			else
+			{
+				//show controls
+				TextView txt = (TextView) findViewById(R.id.txtMessage);
+				txt.setVisibility(View.VISIBLE);
+
+				Button btn = (Button) findViewById(R.id.btnSubscribe);
+				btn.setVisibility(View.VISIBLE);
+			}
+	    }
 	}
 
 }

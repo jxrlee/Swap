@@ -26,7 +26,7 @@ public class SellSummaryListFragment extends ListFragment implements DBAccessDel
 		userid = getArguments().getString("userid");
 		if (fragmentSectionNumber == 1)
 		{
-			DBAccess.getItemsById(this,userid);
+			DBAccess.getItemsByUser(this,userid);
 		}
 		else
 		{
