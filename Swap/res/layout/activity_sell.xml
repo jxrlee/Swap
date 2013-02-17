@@ -81,6 +81,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:textColor="#FFFFFF"
+        android:background="#9f0202"
         android:onClick="sendButtonClicked"
         android:text="@string/btn_send" />
 
@@ -96,6 +101,6 @@
         android:scaleType="fitXY"
         android:src="@android:drawable/ic_menu_camera" />
 
-"
+
 
 </RelativeLayout>

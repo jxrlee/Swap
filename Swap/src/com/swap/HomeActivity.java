@@ -1,6 +1,7 @@
 package com.swap;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,6 +15,9 @@ public class HomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
 		
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Lobster.otf");
