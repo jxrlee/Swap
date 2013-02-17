@@ -12,6 +12,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import com.swap.HTTPDownloadTaskArgument.Task;
 
@@ -46,6 +47,18 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	    		while ((line = reader.readLine()) != null) {
 	    			builder.append(line);
 	    		}
+	    		
+				// valid ID, item was inserted correctly... now start to upload
+				// pictures
+				if (argument.task == Task.INSERT) {
+					JSONObject jsonObject = new JSONObject(builder.toString());
+					
+					if (jsonObject.getInt("id") != -1) {
+							UploadImagesTask upload = new UploadImagesTask();
+							upload.id = jsonObject.getInt("id");
+							upload.start();
+					}
+				}
 	      }
 	      else {
 	    	  Log.e("HTTPDownloadTask", "Http Response Error :(");
@@ -54,7 +67,7 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 	    catch (ClientProtocolException e) {
 	    	e.printStackTrace();
 	    }
-	    catch (IOException e) {
+	    catch (Exception e) {
 	    	e.printStackTrace();
 	    }
 	    

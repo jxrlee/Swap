@@ -162,6 +162,7 @@ public class DBAccess {
 			e.printStackTrace();
 		}
 		
+		
 		delegate.downloadedResult(list);
 		
 	}

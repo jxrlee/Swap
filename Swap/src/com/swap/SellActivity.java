@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -22,7 +21,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,8 +51,10 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
-		//startListeningGPS();
+		startListeningGPS();
 		
+		
+	    
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
 		
 //		ImageView imageView = new ImageView(getApplicationContext());
@@ -144,7 +144,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		
 		newItem.available = true;
 		newItem.sellerid = getPhoneNumber(10);
-		newItem.imagesnum = 0;
+		newItem.imagesnum = itemGallery.getChildCount();
 		
 		
 		DBAccess.createItem(this, newItem);
@@ -170,14 +170,9 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		
 		if (newItem.id != -1)
 		{
-			// TODO: we have a good result, do something
-			
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Item created with ID="+String.valueOf(newItem.id));
-	       
-			AlertDialog dialog = builder.create();
-		
-			dialog.show();
+			Toast.makeText(this, "Item created with ID=" +  String.valueOf(newItem.id), Toast.LENGTH_LONG).show();
+			Intent settingsIntent = new Intent(this, SellSummaryActivity.class);
+	        startActivity(settingsIntent);
 		}
 	}
 	
@@ -253,7 +248,6 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    // Create a media file name
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 	    File mediaFile;
-	    int imgNum = itemGallery.getChildCount();
 	    if (type == MEDIA_TYPE_IMAGE){
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 	        "IMG_"+ timeStamp + ".jpg");
@@ -284,6 +278,9 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	        	itemGallery.removeView(selectedImage);
 	        	File toBeRemovedFile = new File(selectedImage.path.substring(7),"" );
 	        	
+	        	Toast msg = Toast.makeText(getApplicationContext(), toBeRemovedFile.getPath(), Toast.LENGTH_SHORT);
+	    	    msg.show();
+	    	    
 	        	if(toBeRemovedFile.exists())
 	        	{
 	        		Boolean removed  = toBeRemovedFile.delete();
