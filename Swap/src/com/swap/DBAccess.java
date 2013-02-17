@@ -18,6 +18,7 @@ public class DBAccess {
 	public static final String API_URL = "http://purple.dotgeek.org/swapapi.php";
 	public static final String ALL_ITEMS_ACTION = "getAllItems";
 	public static final String NEW_ITEM_ACTION = "insertNewItem";
+	public static final String ITEMS_BY_ID_ACTION = "getItemsById";
 	
 	public static void getAllItems(DBAccessDelegate delegate)
 	{
@@ -165,6 +166,17 @@ public class DBAccess {
 		
 		delegate.downloadedResult(list);
 		
+	}
+
+	public static void getItemsById(
+			DBAccessDelegate delegate, String userid) {
+		
+		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
+		arg.delegate = delegate;
+		arg.url = API_URL + "?action=" + ITEMS_BY_ID_ACTION + "&id="+userid;
+		arg.task = Task.RETRIEVAL;
+		
+		new HTTPDownloadTask().execute(arg);
 	}
 	
 }

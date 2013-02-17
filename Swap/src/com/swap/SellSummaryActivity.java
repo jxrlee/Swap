@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.View;
 
@@ -92,8 +94,21 @@ ActionBar.TabListener {
 			Fragment fragment = new SellSummaryFragment();
 			Bundle args = new Bundle();
 			args.putInt(SellSummaryFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putString("userid",getPhoneNumber(10));
 			fragment.setArguments(args);
 			return fragment;
+		}
+
+		private String getPhoneNumber(int digitCount) {
+			TelephonyManager mTelephonyMgr;
+		    mTelephonyMgr = (TelephonyManager)
+		        getSystemService(Context.TELEPHONY_SERVICE); 
+		    String num = mTelephonyMgr.getLine1Number();
+		    if(num!=null && num.length()>digitCount)
+		    {
+		    	num= num.substring(num.length()-digitCount);
+		    }
+		    return num;
 		}
 
 		@Override

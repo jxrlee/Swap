@@ -47,7 +47,7 @@ public class UploadImagesTask {
 
 				ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
-				bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 20, bao);
+				bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 10, bao);
 
 				byte[] ba = bao.toByteArray();
 

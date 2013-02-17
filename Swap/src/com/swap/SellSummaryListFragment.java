@@ -15,6 +15,7 @@ public class SellSummaryListFragment extends ListFragment implements DBAccessDel
 	public static final String ARG_SECTION_NUMBER = "section_number"; 
 	
 	private int fragmentSectionNumber;
+	private String userid;
 	private List<Item> itemData;
 	
 	@Override
@@ -22,10 +23,10 @@ public class SellSummaryListFragment extends ListFragment implements DBAccessDel
 		super.onCreate(savedInstanceState);
 		
 		fragmentSectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-
+		userid = getArguments().getString("userid");
 		if (fragmentSectionNumber == 1)
 		{
-			DBAccess.getAllItems(this);
+			DBAccess.getItemsById(this,userid);
 		}
 		else
 		{

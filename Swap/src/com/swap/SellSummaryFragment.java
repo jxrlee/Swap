@@ -29,6 +29,7 @@ public class SellSummaryFragment extends Fragment {
         Fragment fragTwo = new SellSummaryListFragment();
         Bundle arguments = new Bundle();
         arguments.putInt(SellSummaryListFragment.ARG_SECTION_NUMBER, getArguments().getInt(ARG_SECTION_NUMBER));
+        arguments.putString("userid", getArguments().getString("userid"));
         fragTwo.setArguments(arguments);
         ft.add(R.id.frag_container, fragTwo);
         ft.commit();
