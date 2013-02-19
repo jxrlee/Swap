@@ -48,7 +48,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         Item item = data[position];
         holder.title.setText(item.title);
         holder.description.setText(item.description);
-        holder.price.setText("$" + Float.toString(item.price));
+        holder.price.setText("$" + dollarFormat(item.price));
         
         if (item.imagesnum > 0)
 		{			
@@ -57,6 +57,15 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 		}
         
         return row;
+    }
+    
+    public static String dollarFormat(float number) {
+    	float epsilon = (float) 0.004;
+    	if ( Math.abs(Math.round(number) - number) < epsilon) {
+    		return String.format("%.0f", number);
+    	} else {
+    		return String.format("%.2f", number);
+    	}
     }
     
     static class ItemHolder

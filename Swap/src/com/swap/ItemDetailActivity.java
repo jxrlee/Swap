@@ -27,6 +27,12 @@ public class ItemDetailActivity extends Activity {
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		
+		TextView distanceView = (TextView) findViewById(R.id.distanceView);
+		distanceView.setText("0.5 miles");
+		
+		TextView priceView = (TextView) findViewById(R.id.priceView);
+		priceView.setText("$" + ItemAdapter.dollarFormat(itemData.price));
+		
 		TextView titleView = (TextView) findViewById(R.id.titleView);
 		titleView.setText(itemData.title);
 		

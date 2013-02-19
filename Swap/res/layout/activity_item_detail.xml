@@ -10,22 +10,45 @@
         android:id="@+id/imageView" 
         android:layout_height="wrap_content"
         android:maxHeight="200dp"
+        android:minHeight="200dp"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true" 
         android:background="#000000" />
+    
+    <TextView 
+        android:textSize="22dip"
+        android:id="@+id/distanceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/imageView" />
+    
+    <TextView 
+        android:textSize="22dip"
+        android:id="@+id/priceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/imageView" />
 
     <TextView
-        android:textSize="20dip"
+        android:textSize="24dip"
+        android:textStyle="bold"
         android:id="@+id/titleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dip"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/imageView" />
+        android:layout_below="@id/distanceView" />
     
     <TextView
+        android:textSize="20dip"
         android:id="@+id/descriptionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/titleView" />
     
