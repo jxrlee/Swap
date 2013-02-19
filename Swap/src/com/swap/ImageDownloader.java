@@ -58,6 +58,17 @@ public class ImageDownloader {
 
     private static final int HARD_CACHE_CAPACITY = 40;
     private static final int DELAY_BEFORE_PURGE = 30 * 1000; // in milliseconds
+    
+    private static ImageDownloader instance = null;
+    protected ImageDownloader() {
+       // Exists only to defeat instantiation.
+    }
+    public static ImageDownloader getInstance() {
+       if(instance == null) {
+          instance = new ImageDownloader();
+       }
+       return instance;
+    }
 
     // Hard cache, with a fixed maximum capacity and a life duration
     private final HashMap<String, Bitmap> mHardBitmapCache = new LinkedHashMap<String, Bitmap>(

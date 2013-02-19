@@ -52,7 +52,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         
         if (item.imagesnum > 0)
 		{			
-			ImageDownloader mDownload = new ImageDownloader();
+			ImageDownloader mDownload = ImageDownloader.getInstance();
 			mDownload.download(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
 		}
         

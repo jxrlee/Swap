@@ -43,7 +43,7 @@ public class ItemDetailActivity extends Activity {
 		{
 			ImageView imageView = (ImageView) findViewById(R.id.imageView);
 			
-			ImageDownloader mDownload = new ImageDownloader();
+			ImageDownloader mDownload = ImageDownloader.getInstance();
 			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_1.jpg", imageView);
 		}
 	}
