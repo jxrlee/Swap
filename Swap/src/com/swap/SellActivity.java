@@ -8,6 +8,8 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,6 +23,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -233,9 +236,23 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	        	
 
 				customImage imageView = new customImage(getApplicationContext());
-				imageView.setLayoutParams(new LayoutParams(300,LayoutParams.MATCH_PARENT));
+				
+				Display display = getWindowManager().getDefaultDisplay();
+				Point size = new Point();
+				display.getSize(size);
+				int width = size.x;
+				
+				imageView.setLayoutParams(new LayoutParams(width,LayoutParams.MATCH_PARENT));
 				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-				imageView.setImageURI(fileUri);
+				final BitmapFactory.Options options = new BitmapFactory.Options();
+			   // options.inJustDecodeBounds = true;
+			    options.inSampleSize = 4;
+			    
+			    
+			    // Calculate inSampleSize
+			    
+				//imageView.setImageURI(fileUri);
+			    imageView.setImageBitmap(BitmapFactory.decodeFile(fileUri.getPath(), options));
 				imageView.path = fileUri.toString();
 				//imageView.setId(itemGallery.getChildCount());
 
