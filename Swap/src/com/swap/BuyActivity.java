@@ -1,7 +1,5 @@
 package com.swap;
 
-import com.swap.R.id;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -97,8 +95,7 @@ public class BuyActivity extends FragmentActivity implements
 			return true;
 			
 		case R.id.show_map:
-			Intent intent = new Intent(this, MapActivity.class);
-			startActivity(intent);
+			Log.i("TAG", "MAP PRESSED");
 			
 			return true;
 		}

@@ -14,12 +14,15 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 	Context context; 
     int layoutResourceId;    
     Item data[] = null;
+    public ImageLoader imageLoader; 
     
     public ItemAdapter(Context context, int layoutResourceId, Item[] data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
+        
+        imageLoader = new ImageLoader(((Activity) context).getApplicationContext());
     }
 	
     @Override
@@ -52,8 +55,10 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         
         if (item.imagesnum > 0)
 		{			
-			ImageDownloader mDownload = ImageDownloader.getInstance();
-			mDownload.download(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
+			//ImageDownloader mDownload = ImageDownloader.getInstance();
+			//mDownload.download(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
+        	
+        	imageLoader.DisplayImage(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
 		}
         
         return row;
