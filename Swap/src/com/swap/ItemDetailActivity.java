@@ -4,6 +4,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +27,19 @@ public class ItemDetailActivity extends Activity {
 		setContentView(R.layout.activity_item_detail);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		//getActionBar().hide();
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		int width = size.x;
+		
+		ImageView view = (ImageView) findViewById(R.id.imageView);
+		view.getLayoutParams().width = width;
+		view.getLayoutParams().height = width;
+		
+		
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		

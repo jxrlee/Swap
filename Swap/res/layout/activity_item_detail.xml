@@ -8,46 +8,61 @@
     
     <ImageView
         android:id="@+id/imageView" 
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true" 
-        android:background="#ffffff" />
+        android:background="#000000" />
     
-    <TextView 
-        android:textSize="22dip"
-        android:id="@+id/distanceView"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/imageView" />
-    
-    <TextView 
-        android:textSize="22dip"
-        android:id="@+id/priceView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/imageView" />
+        android:layout_alignBottom="@+id/imageView"
+        android:background="#66000000" >
+        
+	    <TextView 
+	        android:textSize="22sp"
+	        android:textColor="#ccc"
+	        android:id="@+id/distanceView"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:padding="5dip" 
+	        android:drawableLeft="@drawable/location_place" />
+	    
+	    <TextView 
+	        android:textSize="26sp"
+	        android:textColor="#FFF"
+	        android:textStyle="bold"
+	        android:id="@+id/priceView"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:padding="0dip"
+	        android:layout_marginRight="10dip" />
+        
+    </RelativeLayout>
+
 
     <TextView
-        android:textSize="24dip"
+        android:textSize="24sp"
+        android:textColor="#444444"
         android:textStyle="bold"
         android:id="@+id/titleView"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/distanceView" />
+        android:layout_marginLeft="2dip"
+        android:layout_centerHorizontal="false"
+        android:layout_below="@id/imageView" />
     
     <TextView
-        android:textSize="20dip"
+        android:textSize="14sp"
+        android:textColor="#888888"
         android:id="@+id/descriptionView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip"
+        android:layout_marginLeft="2dip"
+        android:padding="2dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/titleView" />
     
@@ -61,7 +76,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:text="@string/contact_button"
-        android:textSize="20dip"
+        android:textSize="20sp"
         android:textColor="#FFFFFF"
         android:background="#36780f"
         android:onClick="contactButtonTap" />
