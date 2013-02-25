@@ -1,7 +1,8 @@
 package com.swap;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import com.swap.DBAccess.ItemsQueryOption;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,14 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		if (fragmentSectionNumber == 1)
 		{
 			DBAccess.getAllItems(this);
+		}
+		else if (fragmentSectionNumber == 2)
+		{
+			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.PRICE);
+		}
+		else if (fragmentSectionNumber == 3)
+		{
+			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.FEATURED);
 		}
 		else
 		{

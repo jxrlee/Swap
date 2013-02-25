@@ -17,8 +17,25 @@ public class DBAccess {
 	
 	public static final String API_URL = "http://purple.dotgeek.org/swapapi.php";
 	public static final String ALL_ITEMS_ACTION = "getAllItems";
+	public static final String SEARCH_ACTION = "getItemsBySearch";
 	public static final String NEW_ITEM_ACTION = "insertNewItem";
 	public static final String ITEMS_BY_ID_ACTION = "getItemsById";
+	public enum ItemsQueryOption {
+		RECENT(0),
+		PRICE(1),
+		FEATURED(2),
+		NEARBY(3);
+		
+		private final int index;   
+
+		ItemsQueryOption(int index) {
+	        this.index = index;
+	    }
+
+	    public int index() { 
+	        return index; 
+	    }
+	}
 	
 	public static void getAllItems(DBAccessDelegate delegate)
 	{
@@ -31,14 +48,15 @@ public class DBAccess {
 		new HTTPDownloadTask().execute(arg);
 	}
 	
-	public List<Item> getFeaturedItems()
+	public static void getItemsBySearchWithOptions(DBAccessDelegate delegate, String search, ItemsQueryOption option)
 	{
-		return null;
-	}
-	
-	public List<Item> getItemsBySearchText(String text)
-	{
-		return null;
+		
+		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
+		arg.delegate = delegate;
+		arg.url = API_URL + "?action=" + SEARCH_ACTION + "&option=" + Integer.toString(option.index());
+		arg.task = Task.RETRIEVAL;
+		
+		new HTTPDownloadTask().execute(arg);
 	}
 	
 	public Item getItemById(int id)
