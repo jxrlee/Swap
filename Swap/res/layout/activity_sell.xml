@@ -4,7 +4,25 @@
     android:layout_height="match_parent"
     tools:context=".SellActivity"
     android:background="#FFF" >
-
+	
+    <LinearLayout
+        android:id="@+id/linearProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" 
+        android:background="#66000000">
+		
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            style="@android:style/Widget.ProgressBar.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar>
+    </LinearLayout>
     
      <HorizontalScrollView
          android:id="@+id/horizontalScroll"

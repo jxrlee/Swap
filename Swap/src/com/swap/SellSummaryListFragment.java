@@ -36,6 +36,7 @@ public class SellSummaryListFragment extends ListFragment implements DBAccessDel
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 			        android.R.layout.simple_list_item_1, soon);
 			setListAdapter(adapter);
+			DBAccess.getHistoryItemsByUserId(this, userid);
 		}
 	}
 

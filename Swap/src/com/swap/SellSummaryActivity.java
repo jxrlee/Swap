@@ -99,6 +99,7 @@ ActionBar.TabListener {
 	{
 		Intent intent = new Intent(this, SellActivity.class);
 		startActivity(intent);
+		//finish();
 	}
 
 	@Override
@@ -118,6 +119,13 @@ ActionBar.TabListener {
 		
 	}
 	
+//	@Override
+//	public void onBackPressed() {
+//		//Intent home = new Intent(this, HomeActivity.class);
+//        //startActivity(home);
+//		//finish();
+//		return;
+//	}
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {

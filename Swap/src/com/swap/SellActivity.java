@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -30,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,13 +56,14 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	
 	LocationManager locationManager;
 	LocationProvider provider;
+	LinearLayout linlaHeaderProgress;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
 		
-		
+		linlaHeaderProgress = (LinearLayout) findViewById(R.id.linearProgress);
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
 		
 //		ImageView imageView = new ImageView(getApplicationContext());
@@ -69,6 +74,12 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 //	//	layout.addView(imageView);
 //
 //		itemGallery.addView(imageView);
+		
+		
+		
+		//DialogFragment newFragment = new progressBarDialogFragment();
+	  //  newFragment.show(getFragmentManager(), "missiles");
+	    
 	}
 	@Override
 	protected void onPause() {
@@ -85,6 +96,13 @@ public class SellActivity extends Activity implements DBAccessDelegate {
         startListeningGPS();
     }
 
+//	@Override
+//	public void onBackPressed() {
+////		Intent sellSummary = new Intent(this, SellSummaryActivity.class);
+////        startActivity(sellSummary);
+////        finish();
+//    }
+	
 	private void startListeningGPS() {
 		locationManager =
 		        (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -147,6 +165,16 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 			return;
 		}
 		
+		
+		
+		linlaHeaderProgress.setVisibility(View.VISIBLE);
+		linlaHeaderProgress.requestFocus();
+		//Button btn = (Button)findViewById(R.id.btnSend);
+		//btn.setClickable(false);
+		//EditText title = (EditText)findViewById(R.id.txtTitle);
+		//title.setEnabled(false);
+		linlaHeaderProgress.bringToFront();
+		
 		newItem.title = tmpTitle.getText().toString();
 		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
 		newItem.description = tmpDesc.getText().toString();
@@ -204,8 +232,9 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		if (newItem.id != -1)
 		{
 			Toast.makeText(this, "Item created with ID=" +  String.valueOf(newItem.id), Toast.LENGTH_LONG).show();
-			Intent settingsIntent = new Intent(this, SellSummaryActivity.class);
-	        startActivity(settingsIntent);
+			//Intent sellSummary = new Intent(this, SellSummaryActivity.class);
+	        //startActivity(sellSummary);
+	        finish();
 		}
 	}
 	

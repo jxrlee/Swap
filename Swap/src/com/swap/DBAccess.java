@@ -20,6 +20,8 @@ public class DBAccess {
 	public static final String SEARCH_ACTION = "getItemsBySearch";
 	public static final String NEW_ITEM_ACTION = "insertNewItem";
 	public static final String ITEMS_BY_ID_ACTION = "getItemsById";
+	public static final String HISTORY_ITEMS_BY_ID_ACTION = "getHistoryItemsByUserId";
+	
 	public enum ItemsQueryOption {
 		RECENT(0),
 		PRICE(1),
@@ -190,6 +192,17 @@ public class DBAccess {
 		arg.task = Task.RETRIEVAL;
 		
 		new HTTPDownloadTask().execute(arg);
+	}
+
+	public static void getHistoryItemsByUserId(
+			DBAccessDelegate delegate, String userid) {
+		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
+		arg.delegate = delegate;
+		arg.url = API_URL + "?action=" + HISTORY_ITEMS_BY_ID_ACTION + "&id="+userid;
+		arg.task = Task.RETRIEVAL;
+		
+		new HTTPDownloadTask().execute(arg);
+		
 	}
 	
 }
