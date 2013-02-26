@@ -10,7 +10,7 @@
     <string name="button_sell">Sell</string>
 
     <!-- Buy -->
-    <string name="title_section3">Premium</string>
+    <string name="title_section3">Featured</string>
     <string name="title_section2">Price</string>
     <string name="title_section1">Recent</string>
     <string name="title_activity_buy">Buy</string>
@@ -36,8 +36,8 @@
     <string name="btnSellItemText">Post</string>
     <string name="title_tab1">Current</string>
     <string name="title_tab2">History</string>
-    <string name="message_subscribe">Become a featured user today!</string>
-    <string name="button_subscribe">Subscribe</string>
+    <string name="message_subscribe">Want to post more?</string>
+    <string name="button_subscribe">Learn Here</string>
     
     <!-- Map -->
     <string name="title_activity_map">Map</string>
