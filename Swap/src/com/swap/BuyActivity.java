@@ -95,7 +95,8 @@ public class BuyActivity extends FragmentActivity implements
 			return true;
 			
 		case R.id.show_map:
-			Log.i("TAG", "MAP PRESSED");
+			Intent intent = new Intent(this, MapActivity.class);
+			startActivity(intent);
 			
 			return true;
 		}
