@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,6 +94,11 @@ public class ItemDetailActivity extends Activity {
 		intent.setData(Uri.parse("sms:" + itemData.sellerid));
 		intent.putExtra("sms_body", "Hello I'm interested in your " + itemData.title);
         intent.putExtra("compose_mode", true);
+		startActivity(intent);
+	}
+	
+	public void locationButtonTap(View view) {
+		Intent intent = new Intent(this, MapActivity.class);
 		startActivity(intent);
 	}
 
