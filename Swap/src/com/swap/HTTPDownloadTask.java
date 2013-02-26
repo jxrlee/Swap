@@ -86,6 +86,10 @@ public class HTTPDownloadTask extends AsyncTask<HTTPDownloadTaskArgument, Void, 
 		{
 			DBAccess.parseItemInsert(argument.delegate, result);
 		}
+		else if (argument.task == Task.UPDATE)
+		{
+			DBAccess.parseItemUpdate(argument.delegate, result);
+		}
     }
 
 }

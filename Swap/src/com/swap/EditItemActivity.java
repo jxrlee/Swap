@@ -3,6 +3,7 @@ package com.swap;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.location.Location;
 import android.location.LocationListener;
@@ -33,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class EditItemActivity extends Activity {
+public class EditItemActivity extends Activity  implements DBAccessDelegate{
 
 	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/swapimages/";
 	public static final String ARG_ITEM_DATA = "item_data"; 
@@ -58,6 +59,7 @@ public class EditItemActivity extends Activity {
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		
+		linlaHeaderProgress = (LinearLayout) findViewById(R.id.linearProgress);
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);
 		
 		EditText txtTitle = (EditText)findViewById(R.id.txtTitle);
@@ -68,6 +70,9 @@ public class EditItemActivity extends Activity {
 		
 		EditText txtPrice = (EditText)findViewById(R.id.txtPrice);
 		txtPrice.setText(String.valueOf(itemData.price));
+		
+		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		featured.setChecked(itemData.featured);
 		
 		ImageDownloader mDownload = ImageDownloader.getInstance();
 		for (int i=0; i<itemData.imagesnum;i++)
@@ -151,10 +156,10 @@ public class EditItemActivity extends Activity {
 	public void sendButtonClicked(View view)
 	{
 		//NOT IMPLEMENTED CORRECTLY
-		if(true){
-			Toast.makeText(this, "NOT IMPLEMENTED YET!", Toast.LENGTH_LONG).show();
-			return;
-		}
+//		if(true){
+//			Toast.makeText(this, "NOT IMPLEMENTED YET!", Toast.LENGTH_LONG).show();
+//			return;
+//		}
 		
 		Item newItem = new Item();
 		
@@ -172,16 +177,19 @@ public class EditItemActivity extends Activity {
 		linlaHeaderProgress.requestFocus();
 		linlaHeaderProgress.bringToFront();
 		
+		newItem.id = itemData.id;
+		newItem.date = itemData.date;
 		newItem.title = tmpTitle.getText().toString();
-		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
+		newItem.price = Integer.parseInt(tmpPrice.getText().toString());
 		newItem.description = tmpDesc.getText().toString();
 		
 		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
 		newItem.featured = featured.isChecked();
 		
-		// TODO: UI for these properties
 		newItem.rating = 5;
 		
+		newItem.location = itemData.location;
+		/*
 		if(LastLocation != null)
 		{
 			LastLocation = locationManager.getLastKnownLocation(provider.getName());
@@ -199,13 +207,13 @@ public class EditItemActivity extends Activity {
 		{
 			newItem.location = "0.0 0.0";
 		}
-		
+		*/
 		newItem.available = true;
-		newItem.sellerid = getPhoneNumber(10);
+		newItem.sellerid = itemData.sellerid;
 		newItem.imagesnum = itemGallery.getChildCount();
 		
 		
-		//DBAccess.createItem(this, newItem);
+		DBAccess.updateItem(this, newItem);
 		
 	}
 	
@@ -313,6 +321,14 @@ public class EditItemActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_edit_item, menu);
 		return true;
+	}
+
+	@Override
+	public void downloadedResult(List<Item> data) {
+		
+		Toast msg = Toast.makeText(getApplicationContext(), String.valueOf("ITEM UPDATED"), Toast.LENGTH_LONG);
+	    msg.show();
+	    linlaHeaderProgress.setVisibility(View.GONE);
 	}
 
 }

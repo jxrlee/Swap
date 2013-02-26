@@ -21,6 +21,7 @@ public class DBAccess {
 	public static final String NEW_ITEM_ACTION = "insertNewItem";
 	public static final String ITEMS_BY_ID_ACTION = "getItemsById";
 	public static final String HISTORY_ITEMS_BY_ID_ACTION = "getHistoryItemsByUserId";
+	public static final String UPDATE_ITEM_ACTION = "updateItemById";
 	
 	public enum ItemsQueryOption {
 		RECENT(0),
@@ -112,9 +113,50 @@ public class DBAccess {
 		
 	}
 	
-	public boolean updateItem(Item item)
+	public static void updateItem(DBAccessDelegate delegate, Item newItem)
 	{
-		return true;
+		StringBuilder parameters = new StringBuilder();
+		
+		try
+		{
+			parameters.append("&title="+URLEncoder.encode(newItem.title,"utf-8"));
+			parameters.append("&description="+URLEncoder.encode(newItem.description,"utf-8"));
+			parameters.append("&price="+String.valueOf(newItem.price));
+			if (newItem.featured)
+			{
+				parameters.append("&featured=1" );
+			}
+			else
+			{
+				parameters.append("&featured=0" );
+			}
+			parameters.append("&rating="+String.valueOf(newItem.rating));
+			parameters.append("&imagesnum="+String.valueOf(newItem.imagesnum));
+			parameters.append("&location="+URLEncoder.encode(newItem.location,"utf-8"));
+			parameters.append("&sellerid="+newItem.sellerid);
+			parameters.append("&id="+newItem.id);
+			parameters.append("&date="+URLEncoder.encode(newItem.date.toString(),"utf-8"));
+			if (newItem.available)
+			{
+				parameters.append("&available=1" );
+			}
+			else
+			{
+				parameters.append("&available=0" );
+			}
+		}
+		catch (UnsupportedEncodingException e1)
+		{
+			e1.printStackTrace();
+		}
+		
+		
+		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
+		arg.delegate = delegate;
+		arg.url = API_URL + "?action=" + UPDATE_ITEM_ACTION + parameters.toString();
+		arg.task = Task.UPDATE;
+		
+		new HTTPDownloadTask().execute(arg);
 	}
 	
 	public boolean deleteItem(int id)
@@ -203,6 +245,11 @@ public class DBAccess {
 		
 		new HTTPDownloadTask().execute(arg);
 		
+	}
+
+	public static void parseItemUpdate(DBAccessDelegate delegate, String result) {
+		List<Item> list = new ArrayList<Item>();
+		delegate.downloadedResult(list);
 	}
 	
 }

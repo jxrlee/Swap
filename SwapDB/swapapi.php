@@ -200,5 +200,37 @@ else if ($_GET['action'] == "insertNewItem")
 	$stmt->close();
 	$mysqli->close();
 }
+else if ($_GET['action'] == "updateItemById")
+{
+	$mysqli = new mysqli($servername, $username, $password, $database);
+
+	if (!($stmt = $mysqli->prepare("UPDATE items SET title=?,price=?,description=?,location=?,date=?, featured=?, rating=?, available=?, imagesnum=? WHERE id=?")))
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
+
+		if (!$stmt->bind_param("sdsssiiiii",
+		$_GET['title'],$_GET['price'],$_GET['description'],$_GET['location'],$_GET['date'],$_GET['featured'],$_GET['rating'],$_GET['available'],$_GET['imagesnum'],$_GET['id']))
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		}
+
+		if (!$stmt->execute())
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		}
+		else
+		{
+			$newid = array("id"=>$stmt->insert_id);
+			echo json_encode($newid);
+		}
+
+		$stmt->close();
+		$mysqli->close();
+
+}
 
 ?>
