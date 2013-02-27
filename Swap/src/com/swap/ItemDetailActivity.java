@@ -1,5 +1,7 @@
 package com.swap;
 
+import java.util.ArrayList;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -97,8 +99,12 @@ public class ItemDetailActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	public void locationButtonTap(View view) {
+	public void locationButtonTap(View view) {				
+		ArrayList<String> locationArrayList = new ArrayList<String>(1);
+		locationArrayList.add(itemData.location);
+		
 		Intent intent = new Intent(this, MapActivity.class);
+		intent.putStringArrayListExtra(MapActivity.ARG_ITEMS_DATA, locationArrayList);
 		startActivity(intent);
 	}
 

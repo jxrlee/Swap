@@ -1,5 +1,6 @@
 package com.swap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.swap.DBAccess.ItemsQueryOption;
@@ -7,6 +8,7 @@ import com.swap.DBAccess.ItemsQueryOption;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -37,9 +39,7 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.FEATURED);
 		}
 		else
-		{
-			// TODO: data downloading for other pages
-			
+		{			
 			String[] soon = new String[] { "Coming soon..." };
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 			        android.R.layout.simple_list_item_1, soon);
@@ -49,9 +49,7 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 
 	
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO: go to next screen when item is selected
-				
+	public void onListItemClick(ListView l, View v, int position, long id) {				
 		Item selectedItem = itemData.get(position);
 		
 		Intent intent = new Intent(getActivity(), ItemDetailActivity.class);
@@ -59,25 +57,27 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		startActivity(intent);
 		
 	}
+	
+	public void displayMapWithItems() {
+		if (itemData != null)
+		{
+			ArrayList<String> locationArrayList = new ArrayList<String>(1);
+			for (Item currentItem : itemData)
+			{
+				locationArrayList.add(currentItem.location);
+			}
+			
+			Intent intent = new Intent(getActivity(), MapActivity.class);
+			intent.putStringArrayListExtra(MapActivity.ARG_ITEMS_DATA, locationArrayList);
+			startActivity(intent);
+		}
+	}
 
 
 	@Override
 	public void downloadedResult(List<Item> data) {
 		
 		this.itemData = data;
-		
-		/*
-		List<String> stringsToDisplay = new ArrayList<String>();
-		for(int i = 0; i < data.size(); i++) {
-			stringsToDisplay.add( data.get(i).title );
-		}
-		
-		String[] stringVersion = stringsToDisplay.toArray(new String[stringsToDisplay.size()]);
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-		        android.R.layout.simple_list_item_1, stringVersion);
-		        
-		*/
 		
 		Item[] itemArray = data.toArray(new Item[data.size()]);
 		

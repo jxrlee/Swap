@@ -1,5 +1,7 @@
 package com.swap;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -95,8 +97,10 @@ public class BuyActivity extends FragmentActivity implements
 			return true;
 			
 		case R.id.show_map:
-			Intent intent = new Intent(this, MapActivity.class);
-			startActivity(intent);
+			int currentFragmentIndex = mViewPager.getCurrentItem();
+			ItemListFragment currentFragment = mSectionsPagerAdapter.fragmentsArrayList.get(currentFragmentIndex);
+			
+			currentFragment.displayMapWithItems();
 			
 			return true;
 		}
@@ -126,9 +130,13 @@ public class BuyActivity extends FragmentActivity implements
 	 * one of the sections/tabs/pages.
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+		
+		public ArrayList<ItemListFragment> fragmentsArrayList;
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
+			
+			fragmentsArrayList = new ArrayList<ItemListFragment>(3);
 		}
 
 		@Override
@@ -136,10 +144,13 @@ public class BuyActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new ItemListFragment();
+			ItemListFragment fragment = new ItemListFragment();
 			Bundle args = new Bundle();
 			args.putInt(ItemListFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
+			
+			fragmentsArrayList.add(fragment);
+			
 			return fragment;
 		}
 
