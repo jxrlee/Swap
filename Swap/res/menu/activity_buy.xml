@@ -1,20 +1,14 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:background="#94493D">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+    <!-- <item
         android:id="@+id/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:title="@string/menu_settings"/> -->
     
     <item android:id="@+id/menu_search"
           android:title="@string/buy_search"
           android:showAsAction="always"
           android:actionViewClass="android.widget.SearchView" />
-    
-    <item android:title="@string/buy_location"
-        android:id="@+id/show_map"
-        android:icon="@drawable/location_place"
-        android:showAsAction="always" />
 
 </menu>

@@ -13,7 +13,7 @@
     <string name="title_section3">Distance</string>
     <string name="title_section2">Price</string>
     <string name="title_section1">Recent</string>
-    <string name="title_activity_buy">Buy</string>
+    <string name="title_activity_buy">HOME</string>
     <string name="buy_search">Search Swap</string>
     <string name="buy_location">Map</string>
 
@@ -22,7 +22,7 @@
     <string name="contact_button">Contact Seller</string>
 
     <!-- Sell -->
-    <string name="title_activity_sell">Sell</string>
+    <string name="title_activity_sell">SELL</string>
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
     <string name="hint_price">Price</string>
