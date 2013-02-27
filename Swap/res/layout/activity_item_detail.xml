@@ -6,9 +6,8 @@
     android:paddingRight="0dp"
     tools:context=".ItemDetailActivity" >
     
-    <ImageView
-        android:id="@+id/imageView" 
-        android:scaleType="centerCrop"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager" 
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true" 
@@ -17,7 +16,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignBottom="@id/viewPager"
         android:background="#66000000" >
         
 	    <TextView 
@@ -55,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dip"
         android:layout_centerHorizontal="false"
-        android:layout_below="@id/imageView" />
+        android:layout_below="@id/viewPager" />
     
     <TextView
         android:textSize="14sp"
@@ -82,4 +81,5 @@
         android:textColor="#FFFFFF"
         android:background="#36780f"
         android:onClick="contactButtonTap" />
+
 </RelativeLayout>

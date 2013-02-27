@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.util.Log;
@@ -12,9 +13,12 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 
 public class ItemDetailActivity extends Activity {
 	
@@ -37,9 +41,9 @@ public class ItemDetailActivity extends Activity {
 		display.getSize(size);
 		int width = size.x;
 		
-		ImageView view = (ImageView) findViewById(R.id.imageView);
-		view.getLayoutParams().width = width;
-		view.getLayoutParams().height = width;
+//		ImageView view = (ImageView) findViewById(R.id.imageView);
+//		view.getLayoutParams().width = width;
+//		view.getLayoutParams().height = width;
 		
 		
 		
@@ -57,13 +61,20 @@ public class ItemDetailActivity extends Activity {
 		TextView descriptionView = (TextView) findViewById(R.id.descriptionView);
 		descriptionView.setText(itemData.description);
 		
-		if (itemData.imagesnum > 0)
-		{
-			ImageView imageView = (ImageView) findViewById(R.id.imageView);
-			
-			ImageDownloader mDownload = ImageDownloader.getInstance();
-			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_1.jpg", imageView);
-		}
+//		if (itemData.imagesnum > 0)
+//		{
+//			ImageView imageView = (ImageView) findViewById(R.id.imageView);
+//			
+//			ImageDownloader mDownload = ImageDownloader.getInstance();
+//			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_1.jpg", imageView);
+//		}
+		
+		ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+		viewPager.getLayoutParams().width = width;
+		viewPager.getLayoutParams().height = width;
+		
+	    ImagePagerAdapter adapter = new ImagePagerAdapter();
+	    viewPager.setAdapter(adapter);
 	}
 
 	@Override
@@ -108,4 +119,36 @@ public class ItemDetailActivity extends Activity {
 		startActivity(intent);
 	}
 
+	
+	private class ImagePagerAdapter extends PagerAdapter {
+
+		@Override
+		public int getCount() {
+			return itemData.imagesnum;
+		}
+
+	    @Override
+	    public boolean isViewFromObject(View view, Object object) {
+	    	return view == ((ImageView) object);
+	    }
+
+	    @Override
+	    public Object instantiateItem(ViewGroup container, int position) {
+	    	Context context = ItemDetailActivity.this;
+	    	
+	    	ImageView imageView = new ImageView(context);
+	    	imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+	    				
+			ImageDownloader mDownload = ImageDownloader.getInstance();
+			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_" + Integer.toString(position + 1) + ".jpg", imageView);
+	    	
+	    	((ViewPager) container).addView(imageView, 0);
+	    	return imageView;
+	    }
+
+	    @Override
+	    public void destroyItem(ViewGroup container, int position, Object object) {
+	    	((ViewPager) container).removeView((ImageView) object);
+	    }
+	}
 }
