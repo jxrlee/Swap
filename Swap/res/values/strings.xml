@@ -10,7 +10,7 @@
     <string name="button_sell">Sell</string>
 
     <!-- Buy -->
-    <string name="title_section3">Featured</string>
+    <string name="title_section3">Distance</string>
     <string name="title_section2">Price</string>
     <string name="title_section1">Recent</string>
     <string name="title_activity_buy">Buy</string>

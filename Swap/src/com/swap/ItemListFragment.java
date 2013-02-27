@@ -34,10 +34,6 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		{
 			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.PRICE);
 		}
-		else if (fragmentSectionNumber == 3)
-		{
-			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.FEATURED);
-		}
 		else
 		{			
 			String[] soon = new String[] { "Coming soon..." };

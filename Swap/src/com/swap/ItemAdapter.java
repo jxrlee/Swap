@@ -61,6 +61,11 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         	imageLoader.DisplayImage(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
 		}
         
+        if (item.featured)
+        {
+        	row.setBackgroundColor(0xFFFFEBAB);
+        }
+        
         return row;
     }
     
