@@ -28,7 +28,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:padding="5dip" 
-	        android:drawableLeft="@drawable/location_place"
+	        android:drawableLeft="@drawable/location_place2"
 	        android:clickable="true"
 	        android:onClick="locationButtonTap" />
 	    
