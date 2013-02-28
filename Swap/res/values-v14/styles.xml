@@ -13,7 +13,7 @@
 	
     <style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
     	<item name="android:icon">@drawable/swap_icon2</item>
-    	<item name="android:background">@color/gray</item>
+    	<item name="android:background">@color/lightgray</item>
     	<!--<item name="android:backgroundStacked">@color/gray</item> -->
     	<item name="android:backgroundSplit">@color/red</item>
 	</style>

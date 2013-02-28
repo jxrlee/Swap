@@ -62,6 +62,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
+		getActionBar().setDisplayShowTitleEnabled(false);
 		
 		linlaHeaderProgress = (LinearLayout) findViewById(R.id.linearProgress);
 		itemGallery = (LinearLayout)findViewById(R.id.itemGallery);

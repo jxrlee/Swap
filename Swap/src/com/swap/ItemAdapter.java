@@ -5,8 +5,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ItemAdapter extends ArrayAdapter<Item> {
@@ -52,6 +54,13 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         holder.title.setText(item.title);
         holder.description.setText(item.description);
         holder.price.setText("$" + dollarFormat(item.price));
+        
+        // SET SPACING HERE
+        ((MarginLayoutParams) holder.price.getLayoutParams()).rightMargin = 15;
+        // SET COLORS HERE
+        holder.price.setTextColor(row.getResources().getColor(R.color.swapred2));
+        holder.price.setShadowLayer(2, 1, 1, row.getResources().getColor(R.color.gray));
+        holder.title.setTextColor(row.getResources().getColor(R.color.black));
         
         if (item.imagesnum > 0)
 		{			

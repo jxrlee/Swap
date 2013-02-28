@@ -27,14 +27,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="5dp" >
- 
+ 		
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
+    		android:paddingRight="10dp"
     		android:maxLines="1"
     		android:textStyle="bold"
-    		android:color="#888"
+    		android:color="#888888"
     		android:textSize="20dp" />
     </LinearLayout>
     

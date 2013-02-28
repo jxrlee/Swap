@@ -45,6 +45,7 @@ ActionBar.TabListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell_summary);
+		getActionBar().setDisplayShowTitleEnabled(false);
 
 		userinfo = new User();
 		getUserInfo();

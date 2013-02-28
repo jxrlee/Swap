@@ -54,7 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dip"
         android:layout_centerHorizontal="false"
-        android:layout_below="@id/viewPager" />
+        android:layout_below="@id/viewPager" 
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip" />
     
     <TextView
         android:textSize="14sp"
@@ -63,7 +65,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dip"
-        android:padding="2dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/titleView" />
     

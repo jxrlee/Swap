@@ -17,7 +17,132 @@
         android:text="@string/app_name"  
         android:gravity="center_horizontal"  
         android:textSize="100sp" 
-        android:textColor="#94493D"/>
+        android:textColor="#9e4d41"/>
+    
+    <RelativeLayout
+        android:id="@+id/HomeRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/HomeLogo" >
+        
+        <ImageView 
+           android:id="@+id/thumb1"
+           android:src="@drawable/test"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+    	   android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb2"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb1"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+           android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb3"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb2"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip" 
+           android:background="@color/white"
+    	   android:padding="6dip" >
+        </ImageView>
+        
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/HomeRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/HomeRow1" 
+        android:layout_marginTop="6dip">
+        
+        <ImageView 
+           android:id="@+id/thumb4"
+           android:src="@drawable/test"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+    	   android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb5"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb4"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+           android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb6"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb5"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip" 
+           android:background="@color/white"
+    	   android:padding="6dip" >
+        </ImageView>
+        
+    </RelativeLayout>
+    
+        <RelativeLayout
+        android:id="@+id/HomeRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/HomeRow2" 
+        android:layout_marginTop="6dip">
+        
+        <ImageView 
+           android:id="@+id/thumb7"
+           android:src="@drawable/test"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+    	   android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb8"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb7"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip"
+           android:background="@color/white"
+    	   android:padding="6dip"
+    	   android:layout_marginRight="5dip" >
+        </ImageView>
+        <ImageView 
+           android:id="@+id/thumb9"
+           android:src="@drawable/test"
+           android:layout_toRightOf="@id/thumb8"
+           android:scaleType="centerCrop"	
+           android:layout_width="110dip"
+           android:layout_height="110dip" 
+           android:background="@color/white"
+    	   android:padding="6dip" >
+        </ImageView>
+        
+    </RelativeLayout>
     
     <LinearLayout
         android:layout_width="fill_parent"

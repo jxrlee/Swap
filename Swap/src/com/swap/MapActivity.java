@@ -19,6 +19,7 @@ public class MapActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
+		getActionBar().setDisplayShowTitleEnabled(false);
 		
 		locationsArrayList = getIntent().getStringArrayListExtra(ARG_ITEMS_DATA);
 	}
