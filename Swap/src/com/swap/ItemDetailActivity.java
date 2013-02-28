@@ -33,7 +33,7 @@ public class ItemDetailActivity extends Activity {
 		setContentView(R.layout.activity_item_detail);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+		getActionBar().setDisplayShowTitleEnabled(false);
 		//getActionBar().hide();
 		
 		Display display = getWindowManager().getDefaultDisplay();

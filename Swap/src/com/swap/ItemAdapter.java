@@ -63,7 +63,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         
         if (item.featured)
         {
-        	row.setBackgroundColor(0xFFFFEBAB);
+        	//row.setBackgroundColor(0xFFFFEBAB);
+        	row.setBackgroundColor(0x20EBE54D);
         }
         
         return row;
