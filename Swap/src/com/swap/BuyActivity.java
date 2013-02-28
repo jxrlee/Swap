@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -48,7 +49,8 @@ public class BuyActivity extends FragmentActivity implements
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
-		
+		// only supported in API 14
+		//actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red)));
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
