@@ -2,8 +2,13 @@ package com.swap;
 
 import java.util.ArrayList;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,6 +33,10 @@ public class ItemDetailActivity extends Activity {
 	public static final String ARG_ITEM_DATA = "item_data"; 
 	
 	private Item itemData;
+	
+	LocationListener locationListener;
+	LocationManager locationManager;
+	LocationProvider locationProvider;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +50,12 @@ public class ItemDetailActivity extends Activity {
 		Display display = getWindowManager().getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
-		int width = size.x;
-		
-//		ImageView view = (ImageView) findViewById(R.id.imageView);
-//		view.getLayoutParams().width = width;
-//		view.getLayoutParams().height = width;
-		
-		
+		int width = size.x;		
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		
 		TextView distanceView = (TextView) findViewById(R.id.distanceView);
-		distanceView.setText("0.5 miles");
+		distanceView.setText(" ");
 		
 		TextView priceView = (TextView) findViewById(R.id.priceView);
 		priceView.setText("$" + ItemAdapter.dollarFormat(itemData.price));
@@ -61,20 +66,60 @@ public class ItemDetailActivity extends Activity {
 		TextView descriptionView = (TextView) findViewById(R.id.descriptionView);
 		descriptionView.setText(itemData.description);
 		
-//		if (itemData.imagesnum > 0)
-//		{
-//			ImageView imageView = (ImageView) findViewById(R.id.imageView);
-//			
-//			ImageDownloader mDownload = ImageDownloader.getInstance();
-//			mDownload.download(IMAGES_FOLDER + Integer.toString(itemData.id) + "_1.jpg", imageView);
-//		}
-		
 		ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 		viewPager.getLayoutParams().width = width;
 		viewPager.getLayoutParams().height = width;
 		
 	    ImagePagerAdapter adapter = new ImagePagerAdapter();
 	    viewPager.setAdapter(adapter);
+	    
+	    this.startListeningGPS();
+	}
+	
+	private void startListeningGPS() {
+		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		locationProvider = locationManager.getProvider(LocationManager.GPS_PROVIDER);
+		
+		final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+	    if (!gpsEnabled) {
+	        Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+	        startActivity(settingsIntent);
+	    }
+	    
+	    locationListener = new LocationListener() {
+	    	@Override  
+	    	public void onLocationChanged(Location location) {
+	    		Location itemLoc = new Location(location);
+	    		
+	    		double longitude = 32.88106;
+				double latitude = -117.23755;
+				 
+				if (!itemData.location.equals("0.0 0.0"))
+				{
+					String[] longLatArray = itemData.location.split(" ");
+					longitude = Double.valueOf(longLatArray[0]);
+					latitude = Double.valueOf(longLatArray[1]);
+				}
+				
+				itemLoc.setLatitude(latitude);
+	    		itemLoc.setLongitude(longitude);
+	    		
+	    		float dist = (float) (location.distanceTo(itemLoc) * 0.00062137);
+	    		
+	    		String distanceToDisplay = ItemAdapter.dollarFormat(dist);
+	    		
+	    		TextView distanceView = (TextView) findViewById(R.id.distanceView);
+	    		distanceView.setText(distanceToDisplay + " miles");
+	    	}
+	    	
+	    	@Override
+	    	public void onProviderEnabled(String provider){}
+			@Override
+			public void onProviderDisabled(String provider) {}
+			@Override
+			public void onStatusChanged(String provider, int status, Bundle extras) {}
+	    };
 	}
 
 	@Override
