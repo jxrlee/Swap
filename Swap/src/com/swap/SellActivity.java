@@ -235,6 +235,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 			Toast.makeText(this, "Item created with ID=" +  String.valueOf(newItem.id), Toast.LENGTH_LONG).show();
 			//Intent sellSummary = new Intent(this, SellSummaryActivity.class);
 	        //startActivity(sellSummary);
+			setResult(RESULT_FIRST_USER);
 	        finish();
 		}
 	}

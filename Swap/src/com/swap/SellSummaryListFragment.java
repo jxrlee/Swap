@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class SellSummaryListFragment extends ListFragment implements DBAccessDelegate {
@@ -49,7 +50,7 @@ public class SellSummaryListFragment extends ListFragment implements DBAccessDel
 		
 		Intent intent = new Intent(getActivity(), EditItemActivity.class);
 		intent.putExtra(ItemDetailActivity.ARG_ITEM_DATA, selectedItem);
-		startActivity(intent);
+		startActivityForResult(intent, SellSummaryActivity.SELL_LIST_REFRESH);
 		
 	}
 

@@ -37,6 +37,8 @@ import android.widget.TextView;
 public class SellSummaryActivity extends FragmentActivity implements
 ActionBar.TabListener {
 	
+	public static int SELL_LIST_REFRESH = 0;
+	
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 	User userinfo;
@@ -99,9 +101,21 @@ ActionBar.TabListener {
 	public void btnSellItemClicked(View view)
 	{
 		Intent intent = new Intent(this, SellActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent, SELL_LIST_REFRESH);
 		//finish();
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == RESULT_FIRST_USER)
+		{
+			Log.i("HELLO", "UPDATE");
+			mSectionsPagerAdapter.notifyDataSetChanged();
+		}
+    }
 
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
@@ -172,6 +186,11 @@ ActionBar.TabListener {
 				return getString(R.string.title_tab2).toUpperCase();
 			}
 			return null;
+		}
+		
+		@Override
+		public int getItemPosition(Object object) {
+		    return POSITION_NONE;
 		}
 	}
 	

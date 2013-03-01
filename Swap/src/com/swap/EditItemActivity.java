@@ -180,7 +180,7 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 		newItem.id = itemData.id;
 		newItem.date = itemData.date;
 		newItem.title = tmpTitle.getText().toString();
-		newItem.price = Integer.parseInt(tmpPrice.getText().toString());
+		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
 		newItem.description = tmpDesc.getText().toString();
 		
 		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
@@ -329,6 +329,8 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 		Toast msg = Toast.makeText(getApplicationContext(), String.valueOf("ITEM UPDATED"), Toast.LENGTH_LONG);
 	    msg.show();
 	    linlaHeaderProgress.setVisibility(View.GONE);
+	    setResult(RESULT_FIRST_USER);
+//	    finish();
 	}
 
 }

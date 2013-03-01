@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class SellSummaryFragment extends Fragment {
 	
 	public static final String ARG_SECTION_NUMBER = "section_number";
+	public static String FRAGMENT_TAG = "sell_sum_list_fragment";
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -21,18 +23,27 @@ public class SellSummaryFragment extends Fragment {
 		
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.sell_summary_fragment, container, false);
 
-        
         FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = fm.findFragmentByTag(FRAGMENT_TAG);
+        FragmentTransaction ft;
+        
+        if (fragment != null)
+        {
+        	ft = fm.beginTransaction();
+        	ft.remove(fragment);
+        	ft.commit();
+        }
 
-        fm.beginTransaction();
+        ft = fm.beginTransaction();
         Fragment fragTwo = new SellSummaryListFragment();
         Bundle arguments = new Bundle();
         arguments.putInt(SellSummaryListFragment.ARG_SECTION_NUMBER, getArguments().getInt(ARG_SECTION_NUMBER));
         arguments.putString("userid", getArguments().getString("userid"));
         fragTwo.setArguments(arguments);
-        ft.add(R.id.frag_container, fragTwo);
+        
+        ft.add(R.id.frag_container, fragTwo, FRAGMENT_TAG);
         ft.commit();
+        
         
 		if (isFeaturedUser()) {
 			TextView txt = (TextView) layout.findViewById(R.id.txtMessage);
