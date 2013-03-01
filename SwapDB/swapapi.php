@@ -11,7 +11,7 @@ if ($_GET['action'] == "getAllItems")
 {
 
 	$mysqli = mysqli_connect($servername, $username, $password, $database);
-	$res = mysqli_query($mysqli, "SELECT * FROM items where available=1");
+	$res = mysqli_query($mysqli, "SELECT * FROM items where available=1 order by id desc");
 	$res->data_seek(0);
 	$list = array();
 	while ($row = mysqli_fetch_assoc($res))
