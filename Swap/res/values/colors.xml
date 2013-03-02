@@ -3,7 +3,9 @@
     <color name="red">#CC0000</color>
     <color name="swapred">#94493D</color>
     <color name="swapred2">#b35749</color>
+    <color name="swapred3">#1094493D</color>
     <color name="yellow">#EBE54D</color>
+    <color name="green">#36780f</color>
     <color name="lightgray">#CCCCCC</color>
     <color name="gray">#888888</color>
     <color name="black">#444444</color>

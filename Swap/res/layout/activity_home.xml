@@ -159,8 +159,8 @@
 	        android:paddingBottom="4dp"
 	        android:layout_weight="1.0"
 	        android:text="@string/button_sell"
-	        android:textColor="#FFFFFF"
-	        android:background="#94493D"
+	        android:textColor="@color/white"
+	        android:background="@drawable/btn_red"
 	        android:onClick="sellButtonTap" />
 	    
 	    <TextView
@@ -179,8 +179,8 @@
 	        android:paddingBottom="4dp"
 	        android:layout_weight="1.0"
 	        android:text="@string/button_buy"
-	        android:textColor="#FFFFFF"
-	        android:background="#94493D"
+	        android:textColor="@color/white"
+	        android:background="@drawable/btn_red"
 	        android:onClick="buyButtonTap" />
 	    	    
     </LinearLayout>

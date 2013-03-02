@@ -38,6 +38,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class SellActivity extends Activity implements DBAccessDelegate {
@@ -180,7 +181,8 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
 		newItem.description = tmpDesc.getText().toString();
 		
-		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		//CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		Switch featured = (Switch)findViewById(R.id.toggleFeatured);
 		newItem.featured = featured.isChecked();
 		
 		// TODO: UI for these properties

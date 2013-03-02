@@ -32,6 +32,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class EditItemActivity extends Activity  implements DBAccessDelegate{
@@ -71,7 +72,8 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 		EditText txtPrice = (EditText)findViewById(R.id.txtPrice);
 		txtPrice.setText(String.valueOf(itemData.price));
 		
-		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		//CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		Switch featured = (Switch)findViewById(R.id.toggleFeatured);
 		featured.setChecked(itemData.featured);
 		
 		ImageDownloader mDownload = ImageDownloader.getInstance();
@@ -183,7 +185,8 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 		newItem.price = Float.parseFloat(tmpPrice.getText().toString());
 		newItem.description = tmpDesc.getText().toString();
 		
-		CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		//CheckBox featured = (CheckBox)findViewById(R.id.checkFeatured);
+		Switch featured = (Switch)findViewById(R.id.toggleFeatured);
 		newItem.featured = featured.isChecked();
 		
 		newItem.rating = 5;

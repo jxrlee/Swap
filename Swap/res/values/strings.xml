@@ -23,17 +23,23 @@
 
     <!-- Sell -->
     <string name="title_activity_sell">SELL</string>
-    <string name="hint_title">Title</string>
-    <string name="hint_description">Description</string>
-    <string name="hint_price">Price</string>
+    <string name="sell_title">Title</string>
+    <string name="sell_description">Description</string>
+    <string name="sell_price">Price</string>
+    <string name="hint_title">title here</string>
+    <string name="hint_description">description here</string>
+    <string name="hint_price">price here</string>
     <string name="btn_send">Post</string>
-    <string name="check_featured">Make it Featured!</string>
+    <string name="toggle_featured">Featured</string>
+    <string name="toggle_on">Yes</string>
+    <string name="toggle_off">No</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_rotate">Rotate 90 degrees</string>
+    <string name="take_photo">Take Photo</string>
 
     <!-- Sell Summary -->
     <string name="title_activity_sell_summary">SellSummaryActivity</string>
-    <string name="btnSellItemText">Post</string>
+    <string name="btnSellItemText">New Post</string>
     <string name="title_tab1">Current</string>
     <string name="title_tab2">History</string>
     <string name="message_subscribe">Want to post more?</string>

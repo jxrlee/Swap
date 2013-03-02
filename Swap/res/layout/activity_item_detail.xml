@@ -81,8 +81,8 @@
         android:layout_alignParentBottom="true"
         android:text="@string/contact_button"
         android:textSize="20sp"
-        android:textColor="#FFFFFF"
-        android:background="#36780f"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_green"
         android:onClick="contactButtonTap" />
 
 </RelativeLayout>

@@ -24,74 +24,148 @@
         </ProgressBar>
     </LinearLayout>
     
-     <HorizontalScrollView
-         android:id="@+id/horizontalScroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
-            android:id="@+id/itemGallery"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal" >
-           
-            
-        </LinearLayout>
-     </HorizontalScrollView>
-     
-     <EditText
-        android:id="@+id/txtTitle"
+    <TextView
+        android:id="@+id/txtTitleLabel"
+      	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+	    android:padding="0dp"
+	    android:color="@color/black"
+	    android:textSize="22sp"
+	    android:textStyle="bold"
+	    android:text="@string/sell_title" >
+    </TextView>
+    <EditText
+     	android:id="@+id/txtTitle"	   
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/txtTitleLabel"     
+     	android:ems="10"
+     	android:hint="@string/hint_title"
+     	android:inputType="text"
+     	android:layout_marginLeft="5dp"
+     	android:layout_marginRight="5dp" 
+     	android:background="@drawable/input_form" >
+    	<requestFocus />
+	</EditText>
+    
+    <TextView
+        android:id="@+id/txtPriceLabel"
+      	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@id/txtTitle"
+	    android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+	    android:padding="0dp"
+	    android:color="@color/black"
+	    android:textSize="22sp"
+	    android:textStyle="bold"
+	    android:text="@string/sell_price" >
+    </TextView>
+	<EditText
+        android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/horizontalScroll"
         
         android:ems="10"
-        android:hint="@string/hint_title"
-        android:inputType="text"
-        android:layout_marginTop="10dp" >
-        <requestFocus />
-    </EditText>
-    
-     <EditText
-        android:id="@+id/txtDescription"
+        android:hint="@string/hint_price"
+        android:inputType="number"
+        android:layout_below="@id/txtPriceLabel"
+        android:layout_marginLeft="5dp"
+     	android:layout_marginRight="5dp" 
+        android:background="@drawable/input_form" />
+	<TextView
+        android:id="@+id/toggleFeaturedLabel"
+      	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/txtTitle"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginLeft="5dp"
+		android:layout_marginRight="35dp"
+	    android:padding="0dp"
+	    android:color="@color/black"
+	    android:textSize="22sp"
+	    android:textStyle="bold"
+	    android:text="@string/toggle_featured" >
+    </TextView>
+	<Switch
+        android:id="@+id/toggleFeatured"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/toggleFeaturedLabel"
+        android:textOn="@string/toggle_on"
+        android:textOff="@string/toggle_off"
+        android:textColor="#444"
+        android:layout_marginLeft="5dp"
+     	android:layout_marginRight="25dp" />
+    
+    <TextView
+        android:id="@+id/txtDescriptionLabel"
+      	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@id/txtPrice"
+	    android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+	    android:padding="0dp"
+	    android:color="@color/black"
+	    android:textSize="22sp"
+	    android:textStyle="bold"
+	    android:text="@string/sell_description" >
+    </TextView>
+    <EditText
+        android:id="@+id/txtDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
        
         android:ems="10"
         android:hint="@string/hint_description"
         android:inputType="textMultiLine"
-        android:layout_below="@id/txtTitle"
-        android:layout_marginTop="25dp"  />
-     
-<EditText
-        android:id="@+id/txtPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        
-        android:ems="10"
-        android:hint="@string/hint_price"
-        android:inputType="number"
-        android:layout_below="@id/txtDescription"
-        android:layout_marginTop="25dp" />
-
+        android:layout_below="@id/txtDescriptionLabel"
+        android:layout_marginLeft="5dp"
+     	android:layout_marginRight="5dp" 
+        android:background="@drawable/input_form" />
     
-
-    <CheckBox
-        android:id="@+id/checkFeatured"
-        android:layout_width="wrap_content"
+    
+    <HorizontalScrollView
+        android:id="@+id/horizontalScroll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPrice"
-        android:text="@string/check_featured"
-        android:textColor="#000"
-        android:layout_marginTop="25dp" />
+        android:layout_below="@id/txtDescription"
+        android:layout_marginTop="10dp" >
 
+        <LinearLayout
+            android:id="@+id/itemGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal" >
+            
+        </LinearLayout>
+     </HorizontalScrollView>
+     
+
+  	<!--<ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+		android:layout_below="@id/txtDescription"
+        android:adjustViewBounds="true"
+        android:onClick="launchCamera"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/ic_menu_camera" />-->
+    
+  	
     <Button
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
@@ -102,23 +176,42 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="2dp"
-        android:textColor="#FFFFFF"
-        android:background="#94493D"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_red"
         android:onClick="sendButtonClicked"
         android:text="@string/btn_send" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:adjustViewBounds="true"
-        android:onClick="launchCamera"
-        android:scaleType="fitXY"
-        android:src="@android:drawable/ic_menu_camera" />
-
-
+  	<RelativeLayout
+        android:id="@+id/btnCamera"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnSend"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/btn_black"
+        android:onClick="launchCamera" >
+  		
+  	    <TextView
+  		    android:id="@+id/txtCamera"
+  		    android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_centerInParent="true"
+  		    android:textColor="@color/white"
+  		    android:textSize="20sp"
+        	android:text="Take Photo"  />   
+  	    
+  		<ImageView
+  		    android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_toLeftOf="@id/txtCamera"
+        	android:layout_centerInParent="true"
+        	android:adjustViewBounds="true"
+        	android:scaleType="fitXY"
+        	android:src="@android:drawable/ic_menu_camera" />
+		
+	</RelativeLayout>    
 
 </RelativeLayout>

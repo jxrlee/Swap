@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
     
-   </LinearLayout>
+   	</LinearLayout>
 
     <Button
         android:id="@+id/btnSellItem"
@@ -22,8 +22,8 @@
         android:layout_marginRight="2dp"
         android:layout_marginBottom="2dp"
         android:text="@string/btnSellItemText"
-        android:textColor="#FFFFFF"
-        android:background="#94493D"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_red"
         android:onClick="btnSellItemClicked" />
 
     <TextView
@@ -46,8 +46,8 @@
         android:layout_marginTop="30dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:textColor="#FFFFFF"
-        android:background="#ffc92b"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_yellow"
         android:text="@string/button_subscribe"
         android:visibility="invisible"/>"
     
