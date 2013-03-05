@@ -9,6 +9,10 @@
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle</item>
+        <!-- <item name="android:actionBarItemBackground">@style/CloseButton</item>-->
+        <item name="android:actionBarItemBackground">@drawable/selectable_item_background_stylingactionbar</item>
+        <item name="android:actionModeCloseButtonStyle">@style/CloseButton</item>
+        
     </style>
 	
     <style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
@@ -21,5 +25,10 @@
 	<style name="ActionBarTabStyle" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
     	<item name="android:background">@drawable/tab_indicator_ab_stylingactionbar</item>
 	</style>
+	
+	<style name="CloseButton" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+    	<item name="android:background">@drawable/selectable_background_stylingactionbar</item>
+	</style>
     
+	
 </resources>
