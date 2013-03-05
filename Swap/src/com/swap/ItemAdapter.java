@@ -2,6 +2,7 @@ package com.swap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,11 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         holder.price.setTextColor(row.getResources().getColor(R.color.swapred2));
         holder.price.setShadowLayer(2, 1, 1, row.getResources().getColor(R.color.gray));
         holder.title.setTextColor(row.getResources().getColor(R.color.black));
+        // SET DRAWABLE BG
+        if (Build.VERSION.SDK_INT >= 16)
+        	row.setBackgroundResource(R.drawable.item_selector);
+        else
+        	row.setBackgroundDrawable(row.getResources().getDrawable(R.drawable.item_selector));
         
         if (item.imagesnum > 0)
 		{			
