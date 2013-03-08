@@ -122,8 +122,8 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    locationListener = new LocationListener() {
 	    	@Override  
 	    	public void onLocationChanged(Location location) {
-	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
-	    	    msg.show();
+//	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
+//	    	    msg.show();
 	    		LastLocation = location;
 	    	  }
 	    	@Override
