@@ -88,6 +88,10 @@ ActionBar.TabListener {
 	    {
 	    	num= num.substring(num.length()-digitCount);
 	    }
+	    else
+	    {
+	    	num="5555555555";
+	    }
 	    return num;
 	}
 
@@ -168,6 +172,10 @@ ActionBar.TabListener {
 		    if(num!=null && num.length()>digitCount)
 		    {
 		    	num= num.substring(num.length()-digitCount);
+		    }
+		    else
+		    {
+		    	num="5555555555";
 		    }
 		    return num;
 		}

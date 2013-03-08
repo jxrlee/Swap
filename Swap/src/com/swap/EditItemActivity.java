@@ -57,6 +57,7 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
+		getActionBar().setDisplayShowTitleEnabled(false);
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		
@@ -132,8 +133,8 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	    locationListener = new LocationListener() {
 	    	@Override  
 	    	public void onLocationChanged(Location location) {
-	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
-	    	    msg.show();
+//	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
+//	    	    msg.show();
 	    		LastLocation = location;
 	    	  }
 	    	@Override
@@ -229,6 +230,10 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	    if(num!=null && num.length()>digitCount)
 	    {
 	    	num= num.substring(num.length()-digitCount);
+	    }
+	    else
+	    {
+	    	num = "5555555555";
 	    }
 	    return num;
 	}
