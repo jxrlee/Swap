@@ -16,6 +16,7 @@
     <string name="title_activity_buy">HOME</string>
     <string name="buy_search">Search Swap</string>
     <string name="buy_location">Map</string>
+    <string name="search_hint">Search listings</string>
 
     <!-- Item -->
     <string name="title_activity_item_detail">Item</string>
@@ -44,11 +45,12 @@
     <string name="title_tab2">History</string>
     <string name="message_subscribe">Want to post more?</string>
     <string name="button_subscribe">Learn Here</string>
-    
+
     <!-- Map -->
     <string name="title_activity_map">Map</string>
-    
+
     <!-- Edit Item -->
-    <string name="title_activity_edit_item">EditItemActivity</string>
+    <string name="title_activity_edit_item">Edit</string>
+    <string name="title_activity_item_search">ItemSearchActivity</string>
 
 </resources>
