@@ -1,5 +1,10 @@
 package com.swap;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.swap.DBAccess.ItemsQueryOption;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -8,10 +13,14 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
-public class ItemSearchActivity extends ListActivity {
+public class ItemSearchActivity extends ListActivity implements DBAccessDelegate {
+	
+	private List<Item> itemData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +34,15 @@ public class ItemSearchActivity extends ListActivity {
 	    Intent intent = getIntent();
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 	      String query = intent.getStringExtra(SearchManager.QUERY);
-	      handleSearch(query);
+	      
+	      DBAccess.getItemsBySearchWithOptions(this, query, ItemsQueryOption.SEARCH);
 	    }
-	    
-	    String[] soon = new String[] { "Coming soon..." };
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-		        android.R.layout.simple_list_item_1, soon);
-		setListAdapter(adapter);
+	    else
+		{			
+			String[] soon = new String[] { "Error, try again" };
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, soon);
+			setListAdapter(adapter);
+		}
 	}
 
 	@Override
@@ -58,8 +69,50 @@ public class ItemSearchActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void handleSearch(String query) {
-		Log.i("SEARCH", "QUERY: " + query);
+	public void displayMapWithItems() {
+		if (itemData != null)
+		{
+			ArrayList<String> locationArrayList = new ArrayList<String>(1);
+			for (Item currentItem : itemData)
+			{
+				locationArrayList.add(currentItem.location);
+			}
+			
+			Intent intent = new Intent(this, MapActivity.class);
+			intent.putStringArrayListExtra(MapActivity.ARG_ITEMS_DATA, locationArrayList);
+			startActivity(intent);
+		}
+	}
+	
+	@Override
+	public void downloadedResult(List<Item> data) {
+		
+		if (data.size() == 0)
+		{
+			String[] soon = new String[] { "No results found" };
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, soon);
+			setListAdapter(adapter);
+			return;
+		}
+		
+		this.itemData = data;
+		
+		Item[] itemArray = data.toArray(new Item[data.size()]);
+		
+		ItemAdapter adapter = new ItemAdapter(this, R.layout.item_list_row, itemArray);
+		
+		setListAdapter(adapter);
+		
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {				
+		Item selectedItem = itemData.get(position);
+		
+		Intent intent = new Intent(this, ItemDetailActivity.class);
+		intent.putExtra(ItemDetailActivity.ARG_ITEM_DATA, selectedItem);
+		startActivity(intent);
+		
 	}
 
 }
