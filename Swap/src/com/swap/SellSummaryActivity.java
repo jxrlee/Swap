@@ -78,27 +78,12 @@ ActionBar.TabListener {
 	public void learnMoreClicked(View view)
 	{
 		Intent intent = new Intent(this,PremiumInfoActivity.class);
+		intent.putExtra("phoneNumber", userinfo.phone);
 		startActivity(intent);
 	}
 	
 	private void getUserInfo() {
-		new GetUserInfoTask().execute(getPhoneNumber(10));
-	}
-
-	private String getPhoneNumber(int digitCount) {
-		TelephonyManager mTelephonyMgr;
-	    mTelephonyMgr = (TelephonyManager)
-	        getSystemService(Context.TELEPHONY_SERVICE); 
-	    String num = mTelephonyMgr.getLine1Number();
-	    if(num!=null && num.length()>digitCount)
-	    {
-	    	num= num.substring(num.length()-digitCount);
-	    }
-	    else
-	    {
-	    	num="5555555555";
-	    }
-	    return num;
+		new GetUserInfoTask().execute(SwapUtility.getPhoneNumber(this,10));
 	}
 
 	@Override
@@ -165,25 +150,9 @@ ActionBar.TabListener {
 			Fragment fragment = new SellSummaryFragment();
 			Bundle args = new Bundle();
 			args.putInt(SellSummaryFragment.ARG_SECTION_NUMBER, position + 1);
-			args.putString("userid",getPhoneNumber(10));
+			args.putString("userid",SwapUtility.getPhoneNumber(getApplicationContext(), 10));
 			fragment.setArguments(args);
 			return fragment;
-		}
-
-		private String getPhoneNumber(int digitCount) {
-			TelephonyManager mTelephonyMgr;
-		    mTelephonyMgr = (TelephonyManager)
-		        getSystemService(Context.TELEPHONY_SERVICE); 
-		    String num = mTelephonyMgr.getLine1Number();
-		    if(num!=null && num.length()>digitCount)
-		    {
-		    	num= num.substring(num.length()-digitCount);
-		    }
-		    else
-		    {
-		    	num="5555555555";
-		    }
-		    return num;
 		}
 
 		@Override

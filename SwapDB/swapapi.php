@@ -241,5 +241,47 @@ else if ($_GET['action'] == "updateItemById")
 		$mysqli->close();
 
 }
+else if ($_GET['action'] == "becomePremiumUser")
+{
+	$mysqli = new mysqli($servername, $username, $password, $database);
+$today = date("Y-m-d H:i:s");
+	if (!($stmt = $mysqli->prepare("UPDATE users SET premium=1,startdate='".$today."' WHERE phone=?")))
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
+
+		if (!$stmt->bind_param("s",$_GET['id']))
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		}
+
+		if (!$stmt->execute())
+		{
+			header('HTTP/1.0 400 BAD REQUEST', true, 400);
+			echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		}
+		else
+		{
+			$res = mysqli_query($mysqli, "SELECT * FROM users where phone=".$_GET['id']);
+				$res->data_seek(0);
+
+				$row = mysqli_fetch_assoc($res);
+
+					$item = array();
+					for ($i=0; $i<mysqli_num_fields($res); $i++)
+				  	{
+					 	$finfo = mysqli_fetch_field_direct($res,$i);
+						$item[$finfo->name] = $row[$finfo->name];
+					}
+
+			echo json_encode($item);
+		}
+
+		$stmt->close();
+		$mysqli->close();
+
+}
 
 ?>

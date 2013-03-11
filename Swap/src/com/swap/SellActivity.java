@@ -207,7 +207,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		}
 		
 		newItem.available = true;
-		newItem.sellerid = getPhoneNumber(10);
+		newItem.sellerid = SwapUtility.getPhoneNumber(this,10);
 		newItem.imagesnum = itemGallery.getChildCount();
 		
 		
@@ -215,22 +215,6 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		
 	}
 	
-	private String getPhoneNumber(int digitCount) {
-
-		   TelephonyManager mTelephonyMgr;
-	    mTelephonyMgr = (TelephonyManager)
-	        getSystemService(Context.TELEPHONY_SERVICE); 
-	    String num = mTelephonyMgr.getLine1Number();
-	    if(num!=null && num.length()>digitCount)
-	    {
-	    	num= num.substring(num.length()-digitCount);
-	    }
-	    else
-	    {
-	    	num = "5555555555";
-	    }
-	    return num;
-	}
 
 	public void downloadedResult(List<Item> data)
 	{

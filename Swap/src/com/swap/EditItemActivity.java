@@ -221,22 +221,7 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 		
 	}
 	
-	private String getPhoneNumber(int digitCount) {
 
-		   TelephonyManager mTelephonyMgr;
-	    mTelephonyMgr = (TelephonyManager)
-	        getSystemService(Context.TELEPHONY_SERVICE); 
-	    String num = mTelephonyMgr.getLine1Number();
-	    if(num!=null && num.length()>digitCount)
-	    {
-	    	num= num.substring(num.length()-digitCount);
-	    }
-	    else
-	    {
-	    	num = "5555555555";
-	    }
-	    return num;
-	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
