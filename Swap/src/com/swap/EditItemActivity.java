@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 public class EditItemActivity extends Activity  implements DBAccessDelegate{
 
-	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/swapimages/";
+	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/scaled-image.php?src=";
 	public static final String ARG_ITEM_DATA = "item_data"; 
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
@@ -57,6 +57,7 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sell);
+		getActionBar().setDisplayShowTitleEnabled(false);
 		
 		itemData = (Item) getIntent().getSerializableExtra(ARG_ITEM_DATA);
 		
@@ -87,7 +88,7 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 			int width = size.x;
 			
 			imageView.setLayoutParams(new LayoutParams(width,LayoutParams.MATCH_PARENT));
-			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 			final BitmapFactory.Options options = new BitmapFactory.Options();
 		   
 		    options.inSampleSize = 4;
@@ -132,8 +133,8 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	    locationListener = new LocationListener() {
 	    	@Override  
 	    	public void onLocationChanged(Location location) {
-	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
-	    	    msg.show();
+//	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
+//	    	    msg.show();
 	    		LastLocation = location;
 	    	  }
 	    	@Override
@@ -229,6 +230,10 @@ public class EditItemActivity extends Activity  implements DBAccessDelegate{
 	    if(num!=null && num.length()>digitCount)
 	    {
 	    	num= num.substring(num.length()-digitCount);
+	    }
+	    else
+	    {
+	    	num = "5555555555";
 	    }
 	    return num;
 	}

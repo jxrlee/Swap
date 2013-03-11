@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -72,7 +73,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 		{			
 			//ImageDownloader mDownload = ImageDownloader.getInstance();
 			//mDownload.download(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
-        	
+        	holder.thumbnail.setScaleType(ScaleType.CENTER_CROP);
         	imageLoader.DisplayImage(ItemDetailActivity.IMAGES_FOLDER + Integer.toString(item.id) + "_1.jpg", holder.thumbnail);
 		}
         

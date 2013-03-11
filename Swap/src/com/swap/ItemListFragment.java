@@ -32,7 +32,11 @@ public class ItemListFragment extends ListFragment implements DBAccessDelegate {
 		}
 		else if (fragmentSectionNumber == 2)
 		{
-			DBAccess.getItemsBySearchWithOptions(this, "search", ItemsQueryOption.PRICE);
+			DBAccess.getItemsBySearchWithOptions(this, " ", ItemsQueryOption.PRICE);
+		}
+		else if (fragmentSectionNumber == 3)
+		{
+			DBAccess.getItemsBySearchWithOptions(this, " ", ItemsQueryOption.NEARBY);
 		}
 		else
 		{			

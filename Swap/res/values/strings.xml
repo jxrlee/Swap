@@ -10,12 +10,13 @@
     <string name="button_sell">Sell</string>
 
     <!-- Buy -->
-    <string name="title_section3">Distance</string>
+    <string name="title_section3">Nearby</string>
     <string name="title_section2">Price</string>
     <string name="title_section1">Recent</string>
     <string name="title_activity_buy">HOME</string>
     <string name="buy_search">Search Swap</string>
     <string name="buy_location">Map</string>
+    <string name="search_hint">Search listings</string>
 
     <!-- Item -->
     <string name="title_activity_item_detail">Item</string>
@@ -49,12 +50,15 @@
     <string name="title_activity_map">Map</string>
 
     <!-- Edit Item -->
-    <string name="title_activity_edit_item">EditItemActivity</string>
     <string name="title_activity_premium_info">PremiumInfoActivity</string>
     
     <!-- Premium Info -->
     <string name="premium_program_title">Swap Premium Program</string>
-    <string name="premium_program_description">Once you become premium user\n you will be able to blabla..</string>
+    <string name="premium_program_description">Once you become premium user\nyou will be able to blabla..</string>
     <string name="become_premium_button">Become Premium User</string>
+
+    <string name="title_activity_edit_item">Edit</string>
+    <string name="title_activity_item_search">ItemSearchActivity</string>
+
 
 </resources>

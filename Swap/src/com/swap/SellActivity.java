@@ -122,8 +122,8 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    locationListener = new LocationListener() {
 	    	@Override  
 	    	public void onLocationChanged(Location location) {
-	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
-	    	    msg.show();
+//	    	    Toast msg = Toast.makeText(getApplicationContext(), String.valueOf(location.getLatitude()), Toast.LENGTH_SHORT);
+//	    	    msg.show();
 	    		LastLocation = location;
 	    	  }
 	    	@Override
@@ -225,6 +225,10 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 	    {
 	    	num= num.substring(num.length()-digitCount);
 	    }
+	    else
+	    {
+	    	num = "5555555555";
+	    }
 	    return num;
 	}
 
@@ -234,7 +238,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 		
 		if (newItem.id != -1)
 		{
-			Toast.makeText(this, "Item created with ID=" +  String.valueOf(newItem.id), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Your item is now for sale!", Toast.LENGTH_LONG).show();
 			//Intent sellSummary = new Intent(this, SellSummaryActivity.class);
 	        //startActivity(sellSummary);
 			setResult(RESULT_FIRST_USER);
@@ -276,7 +280,7 @@ public class SellActivity extends Activity implements DBAccessDelegate {
 				int width = size.x;
 				
 				imageView.setLayoutParams(new LayoutParams(width,LayoutParams.MATCH_PARENT));
-				imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+				imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 				final BitmapFactory.Options options = new BitmapFactory.Options();
 			   // options.inJustDecodeBounds = true;
 			    options.inSampleSize = 4;

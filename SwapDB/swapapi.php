@@ -57,7 +57,7 @@ if ($_GET['action'] == "getItemsBySearch")
 {
 	$query = "SELECT * FROM items WHERE available = 1";
 	$option = 0;
-	$searchString = "";
+	$searchString = " ";
 
 	if (isset($_GET['option']))
 	{
@@ -71,18 +71,27 @@ if ($_GET['action'] == "getItemsBySearch")
 	/*
 	 * OPTIONS
 	 *
-	 * 0 = recent
+	 * 0 = search
 	 * 1 = price
 	 * 2 = premium
 	 * 3 = nearby
 	 *
 	 */
-	if ($option == 1)
+	if ($option == 0)
+	{
+		$query = "SELECT DISTINCT * FROM items WHERE (title LIKE '%" . $searchString . "%' OR description LIKE '%" . $searchString . "%') AND available = 1 ORDER BY id DESC";
+	}
+	else if ($option == 1)
 	{
 		$query .= " ORDER BY price";
 	}
-	else if ($option == 2) {
+	else if ($option == 2)
+	{
 		$query .= " AND featured = 1";
+	}
+	else if ($option == 3)
+	{
+		$query .= " ORDER BY id DESC";
 	}
 
 	$mysqli = mysqli_connect($servername, $username, $password, $database);

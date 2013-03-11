@@ -24,7 +24,7 @@ public class DBAccess {
 	public static final String UPDATE_ITEM_ACTION = "updateItemById";
 	
 	public enum ItemsQueryOption {
-		RECENT(0),
+		SEARCH(0),
 		PRICE(1),
 		FEATURED(2),
 		NEARBY(3);
@@ -56,7 +56,13 @@ public class DBAccess {
 		
 		HTTPDownloadTaskArgument arg = new HTTPDownloadTaskArgument();
 		arg.delegate = delegate;
-		arg.url = API_URL + "?action=" + SEARCH_ACTION + "&option=" + Integer.toString(option.index());
+		String encodedSearch = " ";
+		try {
+			encodedSearch = URLEncoder.encode(search, "ISO-8859-1");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		arg.url = API_URL + "?action=" + SEARCH_ACTION + "&option=" + Integer.toString(option.index()) + "&search=" + encodedSearch;
 		arg.task = Task.RETRIEVAL;
 		
 		new HTTPDownloadTask().execute(arg);

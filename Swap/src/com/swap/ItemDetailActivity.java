@@ -29,7 +29,7 @@ import android.support.v4.view.ViewPager;
 
 public class ItemDetailActivity extends Activity {
 	
-	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/swapimages/";
+	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/scaled-image.php?src=";
 	public static final String ARG_ITEM_DATA = "item_data"; 
 	
 	private Item itemData;
@@ -92,14 +92,14 @@ public class ItemDetailActivity extends Activity {
 	    	public void onLocationChanged(Location location) {
 	    		Location itemLoc = new Location(location);
 	    		
-	    		double longitude = 32.88106;
-				double latitude = -117.23755;
+	    		double longitude = -117.23755;
+				double latitude = 32.88106;
 				 
 				if (!itemData.location.equals("0.0 0.0"))
 				{
 					String[] longLatArray = itemData.location.split(" ");
-					longitude = Double.valueOf(longLatArray[0]);
-					latitude = Double.valueOf(longLatArray[1]);
+					latitude = Double.valueOf(longLatArray[0]);
+					longitude = Double.valueOf(longLatArray[1]);
 				}
 				
 				itemLoc.setLatitude(latitude);
@@ -120,6 +120,8 @@ public class ItemDetailActivity extends Activity {
 			@Override
 			public void onStatusChanged(String provider, int status, Bundle extras) {}
 	    };
+	    
+	    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 	}
 
 	@Override

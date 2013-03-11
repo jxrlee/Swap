@@ -53,6 +53,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.swap.HomeActivity" />
+            <meta-data android:name="android.app.default_searchable" android:value="com.swap.ItemSearchActivity" />
         </activity>
         <activity
             android:name="com.swap.SellSummaryActivity"
@@ -93,7 +94,18 @@
 
         <activity
             android:name="com.swap.EditItemActivity"
-            android:label="@string/title_activity_edit_item" >
+            android:label="@string/title_activity_edit_item"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.swap.ItemSearchActivity"
+            android:label="@string/title_activity_item_search"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+	            <action android:name="android.intent.action.SEARCH" />
+	        </intent-filter>
+	        <meta-data android:name="android.app.searchable"
+	                   android:resource="@xml/searchable"/>
         </activity>
         <activity
             android:name="com.swap.PremiumInfoActivity"
