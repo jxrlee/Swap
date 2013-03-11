@@ -94,11 +94,13 @@
 
         <activity
             android:name="com.swap.EditItemActivity"
-            android:label="@string/title_activity_edit_item" >
+            android:label="@string/title_activity_edit_item"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.swap.ItemSearchActivity"
-            android:label="@string/title_activity_item_search" >
+            android:label="@string/title_activity_item_search"
+            android:screenOrientation="portrait" >
             <intent-filter>
 	            <action android:name="android.intent.action.SEARCH" />
 	        </intent-filter>

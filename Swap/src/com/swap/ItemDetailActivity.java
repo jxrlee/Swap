@@ -29,7 +29,7 @@ import android.support.v4.view.ViewPager;
 
 public class ItemDetailActivity extends Activity {
 	
-	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/swapimages/";
+	public static final String IMAGES_FOLDER = "http://purple.dotgeek.org/scaled-image.php?src=";
 	public static final String ARG_ITEM_DATA = "item_data"; 
 	
 	private Item itemData;
