@@ -65,6 +65,11 @@ public class ItemSearchActivity extends ListActivity implements DBAccessDelegate
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+			
+		case R.id.show_map:
+			displayMapWithItems();
+			
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
