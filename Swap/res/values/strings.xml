@@ -44,11 +44,17 @@
     <string name="title_tab2">History</string>
     <string name="message_subscribe">Want to post more?</string>
     <string name="button_subscribe">Learn Here</string>
-    
+
     <!-- Map -->
     <string name="title_activity_map">Map</string>
-    
+
     <!-- Edit Item -->
     <string name="title_activity_edit_item">EditItemActivity</string>
+    <string name="title_activity_premium_info">PremiumInfoActivity</string>
+    
+    <!-- Premium Info -->
+    <string name="premium_program_title">Swap Premium Program</string>
+    <string name="premium_program_description">Once you become premium user\n you will be able to blabla..</string>
+    <string name="become_premium_button">Become Premium User</string>
 
 </resources>

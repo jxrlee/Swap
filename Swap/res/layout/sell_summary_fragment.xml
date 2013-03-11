@@ -49,6 +49,7 @@
         android:textColor="@color/white"
         android:background="@drawable/btn_yellow"
         android:text="@string/button_subscribe"
-        android:visibility="invisible"/>"
+        android:visibility="invisible"
+        android:onClick="learnMoreClicked"/>
     
 </RelativeLayout>

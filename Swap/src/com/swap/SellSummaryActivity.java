@@ -75,6 +75,12 @@ ActionBar.TabListener {
 		}
 	}
 
+	public void learnMoreClicked(View view)
+	{
+		Intent intent = new Intent(this,PremiumInfoActivity.class);
+		startActivity(intent);
+	}
+	
 	private void getUserInfo() {
 		new GetUserInfoTask().execute(getPhoneNumber(10));
 	}
@@ -235,6 +241,7 @@ ActionBar.TabListener {
 			    return builder.toString();
 		}
 		
+				
 		@Override
 	    protected void onPostExecute(String result) {
 			

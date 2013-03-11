@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SellSummaryFragment extends Fragment {
 	
@@ -56,6 +57,7 @@ public class SellSummaryFragment extends Fragment {
         return layout;
     }
 
+	
 	private boolean isFeaturedUser() {
 		// TODO: Connect to server and check if user is featured.
 		return false;
