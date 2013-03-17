@@ -1,0 +1,76 @@
+body {
+	/*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+                Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;*/
+	background-image:url('../media/bgnoise.png');
+	background-repeat:repeat;
+}
+h1 {
+	font-size: 38px;
+	font-weight: 400;
+}
+h3 {
+	font-family: museo-slab, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 28px;
+	font-weight: 100;
+	color: #999;
+}
+p {
+	font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#navbar {
+	margin-bottom: 20px;
+}
+#navbar ul {
+	margin-right: 20px;
+}
+.navbar .brand {
+	margin-left: 0px;
+}
+
+#top {
+	padding: 0;
+	padding-top: 20px;
+}
+#header {
+}
+#header_info {
+	padding-top: 180px;
+	padding-bottom: 60px;
+}
+#header_guide {
+	margin: 160px 0px;
+	text-align: center;
+}
+#header_guide a {
+	text-decoration:none;
+}
+#headline {
+	color: #9b4d40;
+}
+.mybtn {
+	width: 140px;
+}
+
+#screenshot {
+	position: relative;
+	top: 0;
+	right: 180px;
+	height: 500px;
+}
+img.screens {
+	margin-left: 20px;
+	height: 450px;
+}
+.screen_info {
+	margin-left: 40px;
+	padding: 20px;
+	background:#ccc;
+	opacity: .6;
+}
+.step {
+	height: 460px;
+	border-top: 1px solid #ccc;
+	padding: 60px 0px;
+}
